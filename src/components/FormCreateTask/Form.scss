@@ -1,9 +1,32 @@
+.form_box{
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+}
+
+
 form {
-  background: yellow;
+  background: rgb(169, 205, 238);
   display: flex;
   padding: 15px;
 }
 
 input {
   display: block;
+  padding: 5px ;
+  border-radius: 5px;
+  border: none;
+  font-size: 15px;
+  margin-right: 15px;
+}
+
+
+.form_btn{
+  display:block;
+ color: cornflowerblue;
+ background: white;
+ border: none ;
+ border-radius: 5px;
+ padding: 5px;
 }

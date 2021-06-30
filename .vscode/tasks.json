@@ -1,0 +1,12 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "api-server",
+			"problemMatcher": [],
+			"label": "npm: api-server",
+			"detail": "json-server --port 4040 --delay 300 --watch db.json"
+		}
+	]
+}

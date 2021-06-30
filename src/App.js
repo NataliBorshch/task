@@ -1,14 +1,36 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import AppBar from "./components/AppBar";
 import Container from "./components/Container";
-import FormCreateTask from "./components/FormCreateTask";
+import FormCreateTask from './components/FormCreateTask';
+import ListTask  from "./components/ListTask.jsx/ListTask";
+import operations  from './redux/task/operations';
 
-export default function App() {
+
+
+
+
+function App() {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(operations.getTask());
+  }, [dispatch]);
+
+
   return (
-    <div>
-      <AppBar />
-      <Container>
-        <FormCreateTask />
+ <> 
+    <AppBar/>
+ <Container>
+   <FormCreateTask/>
+   <ListTask/>
+    
+  
       </Container>
-    </div>
+ </>
+
   );
 }
+
+export default App;
