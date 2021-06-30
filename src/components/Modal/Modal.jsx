@@ -1,17 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
-
+import './Modal.scss';
 
 const modalRoot = document.getElementById('modal-root');
 
 export default function Modal({ onClose, children }) {
-
   const handleModalOverlay = event => {
     if (event.target === event.currentTarget) {
       onClose();
     }
   };
-  
+
   useEffect(() => {
     const handleModalKeyDown = event => {
       if (event.code === 'Escape') {
@@ -25,8 +24,8 @@ export default function Modal({ onClose, children }) {
   }, [onClose]);
 
   return createPortal(
-    <div className='overlay' onClick={handleModalOverlay}>
-      <div className='modal'>{children}</div>
+    <div className="overlay" onClick={handleModalOverlay}>
+      <div className="modal">{children}</div>
     </div>,
     modalRoot,
   );

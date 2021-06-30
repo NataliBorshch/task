@@ -4,6 +4,10 @@ const getTaskRequest = createAction('task/getTaskRequest');
 const getTaskSuccess = createAction('task/getTaskSuccess');
 const getTaskError = createAction('task/getTaskError');
 
+const getTaskByIdRequest = createAction('task/getTaskByIdRequest');
+const getTaskByIdSuccess = createAction('task/getTaskByIdSuccess');
+const getTasByIdkError = createAction('task/getTaskByIdError');
+
 const createTaskRequest = createAction('task/createTaskRequest');
 const createTaskSuccess = createAction('task/createTaskSuccess');
 const createTaskError = createAction('task/createTaskError');
@@ -24,37 +28,36 @@ const rejectionTaskRequest = createAction('task/rejectionTaskRequest');
 const rejectionTaskSuccess = createAction('task/rejectionTaskSuccess');
 const rejectionTaskError = createAction('task/rejectionTaskError');
 
-
-
-
 const filterTask = createAction('task/Filter');
 
+export default {
+  getTaskRequest,
+  getTaskSuccess,
+  getTaskError,
 
+  removeTaskRequest,
+  removeTaskSuccess,
+  removeTaskError,
 
-export default{
-    getTaskRequest ,
-    getTaskSuccess,
-    getTaskError,
+  createTaskSuccess,
+  createTaskRequest,
+  createTaskError,
 
-    removeTaskRequest , 
-    removeTaskSuccess , 
-    removeTaskError, 
+  updateTaskRequest,
+  updateTaskSuccess,
+  updateTaskError,
 
-    createTaskSuccess , 
-    createTaskRequest , 
-    createTaskError,
+  updateTaskStatusRequest,
+  updateTaskStatusSuccess,
+  updateTaskStatusError,
 
-    updateTaskRequest , 
-    updateTaskSuccess , 
-    updateTaskError , 
+  rejectionTaskRequest,
+  rejectionTaskSuccess,
+  rejectionTaskError,
 
-    updateTaskStatusRequest , 
-    updateTaskStatusSuccess , 
-    updateTaskStatusError , 
+  filterTask,
 
-    rejectionTaskRequest , 
-    rejectionTaskSuccess , 
-    rejectionTaskError,
-
-    filterTask
-}
+  getTaskByIdRequest,
+  getTaskByIdSuccess,
+  getTasByIdkError,
+};

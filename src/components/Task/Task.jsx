@@ -1,23 +1,51 @@
 import { v4 as uuidv4 } from 'uuid';
 import './Task.scss';
+import Icon from '../Icon';
+import Modal from '../../components/Modal';
+import FormUpdate from '../FormUpdate/FormUpdate';
+import operations from '../../redux/task/operations';
+import { useDispatch } from 'react-redux';
+import { useState, useCallback } from 'react';
 
-export default function Task({item}){
+export default function Task({ item }) {
+  const dispatch = useDispatch();
+  const onRemove = id => dispatch(operations.removeTask(id));
+  const [showModal, setShowModal] = useState(false);
 
-    return <div className='task'>
-        <p className='task_time'>{item.date_created}</p>
-        <p className='task_name'>{item.name}</p>
-        <p className='task_desk'>{item.description}</p>
-        <label className='task_priority'>
-            <input  type="checkbox" />
-        </label>
-        <select className='task_status'>Status
-            {item.status.map((item)=>{
-               return <option key={uuidv4()}>{item}</option>
-            })} 
-              </select>
-              <button  className='task_btn'>Delete</button>
-              <button className='task_btn' >Edit</button>
-              <button  className='task_btn'>rejection </button>
-    </div>
+  const openModal = useCallback(() => {
+    console.log('Modal open');
+    return setShowModal(true);
+  }, []);
 
+  const onCloseModal = useCallback(() => {
+    setShowModal(false);
+  }, []);
+  return (
+    <>
+      <th>{item.id}</th>
+      <th>{item.name}</th>
+      <th>{item.date_created}</th>
+      <th>{item.description}</th>
+      <th>
+        {item.priority} <input type="checkbox" />
+      </th>
+      <th>{item.status}</th>
+      <th>
+        <button>
+          <Icon icon="minus" size={20} color="red" />
+        </button>
+        <button onClick={openModal}>
+          <Icon icon="edit" size={20} color="blue" />
+        </button>
+        {showModal && (
+          <Modal onClose={onCloseModal}>
+            <FormUpdate id={item.id} />
+          </Modal>
+        )}
+        <button onClick={() => onRemove(item.id)}>
+          <Icon icon="delete" size={20} color="red" />
+        </button>
+      </th>
+    </>
+  );
 }

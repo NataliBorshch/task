@@ -1,14 +1,18 @@
 header {
   width: 100%;
+  display: flex;
   padding: 15px;
   position: fixed;
-  background: linear-gradient(#649ce69c, #bc91e5);
+  color: #5892ddee;
   font-size: 12px;
-  font-family: "Benne", serif;
-  color: white;
-  text-align: center;
+  font-family: 'Benne', serif;
+  font-style: italic;
+  background: rgba(39, 38, 38, 0.589);
+  justify-content: center;
+  align-items: center;
 }
 
 h1 {
   margin: 0;
+  margin-right: 10px;
 }
