@@ -13,6 +13,16 @@ const getTask = () => dispatch => {
     .catch(error => dispatch(actions.getTaskError(error.message)));
 };
 
+const addTask = (obj) => dispatch => {
+  dispatch(actions.createTaskRequest());
+  axios
+    .post('/task' , obj)
+    .then(({ data }) => {
+      return dispatch(actions.createTaskSuccess(data));
+    })
+    .catch(error => dispatch(actions.createTaskError(error.message)));
+};
+
 const removeTask = (id ) => dispatch => {
   dispatch(actions.getTaskRequest());
   axios
@@ -22,9 +32,6 @@ const removeTask = (id ) => dispatch => {
     })
     .catch(error => dispatch(actions.getTaskError(error.message)));
 };
-
-
-
 
 const updateTask = (obj) => dispatch => {
     dispatch(actions.updateTaskRequest());
@@ -36,21 +43,29 @@ const updateTask = (obj) => dispatch => {
       .catch(error => dispatch(actions.updateTaskError(error.message)));
   };
 
+  const updateStatusTask = (id) => dispatch => {
+    dispatch(actions.updateTaskStatusRequest());
+    axios
+      .post(`/task${id}`)
+      .then(({ data }) => {
+        return dispatch(actions.updateTaskStatusSuccess(data));
+      })
+      .catch(error => dispatch(actions.updateTaskStatusError(error.message)));
+  };
 
-  
-const addTask = (obj) => dispatch => {
-  dispatch(actions.createTaskRequest());
-  axios
-    .post('/task' , obj)
-    .then(({ data }) => {
-      return dispatch(actions.createTaskSuccess(data));
-    })
-    .catch(error => dispatch(actions.createTaskError(error.message)));
-};
+  const rejectionTask= (id)=>dispatch=>{
+    dispatch(actions.removeTaskRequest());
+    axios.patch(`/task${id}`).then(({data})=>{
+      return dispatch(actions.rejectionTaskSuccess(data))
+    }).catch(error=>actions.rejectionTaskError(error.message))
+  }
+
 
 export default {
     getTask , 
     addTask, 
     updateTask,
-    removeTask
+    updateStatusTask , 
+    removeTask , 
+    rejectionTask
 }
