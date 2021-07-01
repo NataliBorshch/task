@@ -38,21 +38,12 @@ const updateTask = (id, data) => dispatch => {
   axios
     .put(`/task/${id}`, data)
     .then(({ data }) => {
-      console.log(data);
       return dispatch(actions.updateTaskSuccess(data));
     })
     .catch(error => dispatch(actions.updateTaskError(error.message)));
 };
 
-const updateStatusTask = id => dispatch => {
-  dispatch(actions.updateTaskStatusRequest());
-  axios
-    .post(`/task/${id}`)
-    .then(({ data }) => {
-      return dispatch(actions.updateTaskStatusSuccess(data));
-    })
-    .catch(error => dispatch(actions.updateTaskStatusError(error.message)));
-};
+
 
 const rejectionTask = id => dispatch => {
   dispatch(actions.removeTaskRequest());
@@ -78,7 +69,6 @@ export default {
   getTask,
   addTask,
   updateTask,
-  updateStatusTask,
   removeTask,
   rejectionTask,
   getById,

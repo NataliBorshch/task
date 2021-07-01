@@ -1,19 +1,17 @@
-import { v4 as uuidv4 } from 'uuid';
-import './Task.scss';
+import { useDispatch } from 'react-redux';
+import { useState, useCallback } from 'react';
 import Icon from '../Icon';
 import Modal from '../../components/Modal';
 import FormUpdate from '../FormUpdate/FormUpdate';
 import operations from '../../redux/task/operations';
-import { useDispatch } from 'react-redux';
-import { useState, useCallback } from 'react';
+import './Task.scss';
 
 export default function Task({ item }) {
+  const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
   const onRemove = id => dispatch(operations.removeTask(id));
-  const [showModal, setShowModal] = useState(false);
 
   const openModal = useCallback(() => {
-    console.log('Modal open');
     return setShowModal(true);
   }, []);
 
@@ -23,8 +21,12 @@ export default function Task({ item }) {
 
   const onRejectTask = event => {
     console.dir(event.target);
-    event.target.style.background = 'red';
   };
+
+  const onTogglePriority = ((event)=>{
+    console.log(event.target.checked)
+  })
+
   return (
     <>
       <th>{item.id}</th>
@@ -32,9 +34,12 @@ export default function Task({ item }) {
       <th>{item.date_created}</th>
       <th>{item.description}</th>
       <th>
-        {item.priority} <input type="checkbox" />
+      <input type="checkbox" checked={item.priority} onChange={onTogglePriority} />
       </th>
-      <th>{item.status}</th>
+      <th>
+        <select  className='status_option' value={item.status} onChange={()=>{}}>
+        <option >{item.status}</option></select>
+        </th>
       <th>
         <button onClick={onRejectTask}>
           <Icon icon="minus" size={20} color="red" />

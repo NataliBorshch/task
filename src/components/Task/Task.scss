@@ -2,3 +2,17 @@
   display: flex;
   background: chocolate;
 }
+th{
+  align-items: center;
+  input{
+    display: inline-block;
+  }
+}
+
+.status_option{
+  background: cornflowerblue;
+}
+
+.rejected{
+  text-decoration: line-through;
+}

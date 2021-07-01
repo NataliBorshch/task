@@ -21,7 +21,7 @@ export default function FormCreateTask() {
       console.log(data);
       dispatch(operations.addTask(data));
     },
-    [dispatch],
+    [dispatch ],
   );
 
   const handleInput = useCallback(evt => {

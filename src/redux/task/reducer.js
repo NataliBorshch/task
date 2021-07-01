@@ -8,13 +8,8 @@ const items = createReducer([], {
   [actions.removeTaskSuccess]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
   [actions.updateTaskSuccess]: (state, { payload }) =>
-    state.map(item =>
-      item.id === payload.id ? [item, ...payload] : [payload],
+    state.map(item =>(item.id === payload.id ? item : payload),
     ),
-  [actions.updateTaskStatusSuccess]: (state, { payload }) => [
-    ...state,
-    payload,
-  ],
   [actions.rejectionTaskSuccess]: (state, { payload }) => [...state, payload],
 });
 //done
@@ -42,10 +37,6 @@ const isLoading = createReducer(false, {
   [actions.updateTaskRequest]: () => true,
   [actions.updateTaskSuccess]: () => false,
   [actions.updateTaskError]: () => false,
-
-  [actions.updateTaskStatusRequest]: () => true,
-  [actions.updateTaskStatusSuccess]: () => false,
-  [actions.updateTaskStatusError]: () => false,
 
   [actions.rejectionTaskRequest]: () => true,
   [actions.rejectionTaskSuccess]: () => false,

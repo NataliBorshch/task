@@ -16,8 +16,9 @@ export default function FormUpdate({ id }) {
   }, [dispatch, id]);
 
   const handleInput = useCallback(evt => {
-    const value = evt.target.name;
-    setTask(prev => ({ ...prev, [value]: evt.target.value }));
+    const value = evt.target.type === 'checkbox' ? evt.target.checked : evt.target.value;
+    const name  = evt.target.name;
+    setTask(prev => ({ ...prev, [name]: value,}));
   }, []);
 
   const updateTask = useCallback(
@@ -30,7 +31,7 @@ export default function FormUpdate({ id }) {
   const handleSubmit = useCallback(
     evt => {
       evt.preventDefault();
-      updateTask(task);
+      updateTask({...task , "date_created":new Date()});
     },
     [task, updateTask],
   );
@@ -48,22 +49,21 @@ export default function FormUpdate({ id }) {
             value={task.description}
             name="description"
             onChange={handleInput}
-          />
-        </label>
+          /></label>
         <label>
           Priority
-          <input type="checkbox" checked={task.priority} name="priority" />
+          <input type="checkbox" checked={task.priority} name="priority" onChange={handleInput} />
         </label>
 
         <label>
           Status
-          <select className="task_status">
+          <select className="task_status" value={task.status} name='status' onChange={handleInput}>
             {status.map(item => {
-              return <option key={uuidv4()}>{item}</option>;
+              return <option key={uuidv4()} value={item} name='status' >{item}</option>;
             })}
           </select>
         </label>
-        <button>Save</button>
+        <button type='submit' onClick={handleSubmit}>Save</button>
       </form>
     )
   );

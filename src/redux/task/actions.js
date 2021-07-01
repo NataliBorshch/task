@@ -16,9 +16,7 @@ const updateTaskRequest = createAction('task/updateTaskRequest');
 const updateTaskSuccess = createAction('task/updateTaskSuccess');
 const updateTaskError = createAction('task/updateTaskError');
 
-const updateTaskStatusRequest = createAction('task/updateTaskStatusRequest');
-const updateTaskStatusSuccess = createAction('task/updateTaskStatusSuccess');
-const updateTaskStatusError = createAction('task/updateTaskStatusError');
+
 
 const removeTaskRequest = createAction('task/removeTaskRequest');
 const removeTaskSuccess = createAction('task/removeTaskSuccess');
@@ -46,10 +44,6 @@ export default {
   updateTaskRequest,
   updateTaskSuccess,
   updateTaskError,
-
-  updateTaskStatusRequest,
-  updateTaskStatusSuccess,
-  updateTaskStatusError,
 
   rejectionTaskRequest,
   rejectionTaskSuccess,
