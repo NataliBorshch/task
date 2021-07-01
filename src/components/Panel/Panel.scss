@@ -1,9 +1,12 @@
 .panel_search {
   display: flex;
+  align-items: center;
+  justify-content: center;
   background: #5892ddee;
   padding: 15px;
   border-radius: 5px;
 }
 
-label {
+.panel_filter {
+  margin-left: 20px;
 }

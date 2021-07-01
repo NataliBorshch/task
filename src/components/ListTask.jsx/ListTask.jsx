@@ -14,12 +14,22 @@ export default function ListTask() {
         <caption>The Beatles</caption>
         <thead className="label">
           <tr>
-            <th className="title">Number</th>
-            <th className="title">Name</th>
-            <th className="title">Date</th>
+            <th className="title">
+              Number <button>sory by bumber</button>
+            </th>
+            <th className="title">
+              Name <button>sory by name</button>
+            </th>
+            <th className="title">
+              Date <button>sory by Date</button>
+            </th>
             <th className="title">Description</th>
-            <th className="title">Status</th>
-            <th className="title">Priority</th>
+            <th className="title">
+              Status <button>sory Status</button>
+            </th>
+            <th className="title">
+              Priority <button>sory by priopitet</button>
+            </th>
             <th className="title">Change Task</th>
           </tr>
         </thead>

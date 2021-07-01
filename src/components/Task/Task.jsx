@@ -20,6 +20,11 @@ export default function Task({ item }) {
   const onCloseModal = useCallback(() => {
     setShowModal(false);
   }, []);
+
+  const onRejectTask = event => {
+    console.dir(event.target);
+    event.target.style.background = 'red';
+  };
   return (
     <>
       <th>{item.id}</th>
@@ -31,7 +36,7 @@ export default function Task({ item }) {
       </th>
       <th>{item.status}</th>
       <th>
-        <button>
+        <button onClick={onRejectTask}>
           <Icon icon="minus" size={20} color="red" />
         </button>
         <button onClick={openModal}>

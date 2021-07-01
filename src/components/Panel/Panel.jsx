@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useCallback } from 'react';
+import { useState } from 'react';
 import selectors from '../../redux/task/selectors';
 import actions from '../../redux/task/actions';
 import './Panel.scss';
-import { useCallback } from 'react';
-import { useState } from 'react';
 import FormCreateTask from '../FormCreateTask';
 
 export default function Panel() {
@@ -15,31 +15,22 @@ export default function Panel() {
     [dispatch],
   );
 
-  // const sortbyTime = () => {
-  //   return task(({ date_created }) => {
-  //     date_created.sort((a, b) => b - a);
-  //   });
-  // };
+  const sortbyUp = array => {
+    return array.sort((a, b) => a - b);
+  };
 
-  // const openModal = useCallback(() => {
-  //   return setShowModal(true);
-  // }, []);
-  // const onCloseModal = useCallback(() => {
-  //   setShowModal(false);
-  // }, []);
+  const sortbyDown = array => {
+    return array.sort((a, b) => b - a);
+  };
+
   return (
     <div className="panel_search">
       <FormCreateTask />
-      <label>
-        Filter by name
-        <input type="text" value={filter} onChange={getFilter} />
-      </label>
-      <div>
-        <button>Sort by time + </button>
-        <button>Sort by time - </button>
-        <button>Sort by priority + </button>
-        <button>Sort by priority - </button>
-        <button>Sort by status - </button>
+      <div className="panel_filter">
+        <label cl>
+          Filter by name
+          <input type="text" value={filter} onChange={getFilter} />
+        </label>
       </div>
     </div>
   );
