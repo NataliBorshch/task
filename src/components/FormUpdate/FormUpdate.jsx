@@ -13,7 +13,7 @@ export default function FormUpdate({ id }) {
 
   useEffect(() => {
     dispatch(operations.getById(id));
-  }, [dispatch, id]);
+  }, [dispatch, id , taskId]);
 
   const handleInput = useCallback(evt => {
     const value = evt.target.type === 'checkbox' ? evt.target.checked : evt.target.value;

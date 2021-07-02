@@ -10,12 +10,12 @@ import Panel from './components/Panel';
 
 function App() {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectors.isLoading)
+  const isLoading = useSelector(selectors.isLoading);
   
 
   useEffect(() => {
     dispatch(operations.getTask());
-  }, [dispatch]);
+   }, [] );
 
   return (
     <>
@@ -23,7 +23,7 @@ function App() {
       <Container>
         <Timer />
         <Panel />
-        {isLoading ? <h1>Загружаем</h1> :<ListTask />}
+        {isLoading ? <h1>Загружаем</h1> :<ListTask  />}
       </Container>
     </>
   );
