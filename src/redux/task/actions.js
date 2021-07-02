@@ -4,10 +4,6 @@ const getTaskRequest = createAction('task/getTaskRequest');
 const getTaskSuccess = createAction('task/getTaskSuccess');
 const getTaskError = createAction('task/getTaskError');
 
-const getTaskByIdRequest = createAction('task/getTaskByIdRequest');
-const getTaskByIdSuccess = createAction('task/getTaskByIdSuccess');
-const getTasByIdkError = createAction('task/getTaskByIdError');
-
 const createTaskRequest = createAction('task/createTaskRequest');
 const createTaskSuccess = createAction('task/createTaskSuccess');
 const createTaskError = createAction('task/createTaskError');
@@ -15,8 +11,6 @@ const createTaskError = createAction('task/createTaskError');
 const updateTaskRequest = createAction('task/updateTaskRequest');
 const updateTaskSuccess = createAction('task/updateTaskSuccess');
 const updateTaskError = createAction('task/updateTaskError');
-
-
 
 const removeTaskRequest = createAction('task/removeTaskRequest');
 const removeTaskSuccess = createAction('task/removeTaskSuccess');
@@ -50,8 +44,4 @@ export default {
   rejectionTaskError,
 
   filterTask,
-
-  getTaskByIdRequest,
-  getTaskByIdSuccess,
-  getTasByIdkError,
 };

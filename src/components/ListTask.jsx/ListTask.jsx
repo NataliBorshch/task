@@ -1,6 +1,7 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import selectors from '../../redux/task/selectors';
-import operations from '../../redux/task/operations';
+import sortBy from 'lodash.sortby';
+
 import './ListTask.scss';
 import { useState, useEffect } from 'react';
 import Task from '../Task/index';
@@ -14,17 +15,22 @@ export default function ListTask() {
   }, [tasks]);
 
   const sortByUp = value => {
-    const taskSort = [...tasks].sort((a, b) => a[value] - b[value]);
-    setTaskSort(taskSort);
+    const lodash = sortBy(tasks, [
+      function (o) {
+        return o[value];
+      },
+    ]);
+    setTaskSort(lodash);
   };
 
   const sortByDown = value => {
-    const taskSort = [...tasks].sort((a, b) => b[value] - a[value]);
-
-    setTaskSort(taskSort);
+    const lodash = sortBy(tasks, [
+      function (o) {
+        return o[value];
+      },
+    ]);
+    setTaskSort(lodash.reverse());
   };
-
-  console.log(taskSort);
 
   return (
     <div>
@@ -33,17 +39,16 @@ export default function ListTask() {
         <thead className="label">
           <tr>
             <th className="title">
-              Number{' '}
+              Number
               <button type="button" onClick={() => sortByUp('id')}>
-                {' '}
-                +{' '}
+                +
               </button>
               <button type="button" onClick={() => sortByDown('id')}>
                 -
               </button>
             </th>
             <th className="title">
-              Name{' '}
+              Name
               <button type="button" onClick={() => sortByUp('name')}>
                 +
               </button>
@@ -52,7 +57,7 @@ export default function ListTask() {
               </button>
             </th>
             <th className="title">
-              Date{' '}
+              Date
               <button type="button" onClick={() => sortByUp('date_created')}>
                 +
               </button>
@@ -70,11 +75,11 @@ export default function ListTask() {
               </button>
             </th>
             <th className="title">
-              Status{' '}
+              Status
               <button type="button" onClick={() => sortByUp('status')}>
                 +
               </button>
-              <button type="button" onClick={() => sortByUp('status')}>
+              <button type="button" onClick={() => sortByDown('status')}>
                 -
               </button>
             </th>

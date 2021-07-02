@@ -23,9 +23,9 @@ export default function Task({ item }) {
     console.dir(event.target);
   };
 
-  const onTogglePriority = ((event)=>{
-    console.log(event.target.checked)
-  })
+  const onTogglePriority = event => {
+    console.log(event.target.checked);
+  };
 
   return (
     <>
@@ -34,12 +34,21 @@ export default function Task({ item }) {
       <th>{item.date_created}</th>
       <th>{item.description}</th>
       <th>
-      <input type="checkbox" checked={item.priority} onChange={onTogglePriority} />
+        <input
+          type="checkbox"
+          checked={item.priority}
+          onChange={onTogglePriority}
+        />
       </th>
       <th>
-        <select  className='status_option' value={item.status} onChange={()=>{}}>
-        <option >{item.status}</option></select>
-        </th>
+        <select
+          className="status_option"
+          value={item.status}
+          onChange={() => {}}
+        >
+          <option>{item.status}</option>
+        </select>
+      </th>
       <th>
         <button onClick={onRejectTask}>
           <Icon icon="minus" size={20} color="red" />
@@ -49,7 +58,7 @@ export default function Task({ item }) {
         </button>
         {showModal && (
           <Modal onClose={onCloseModal}>
-            <FormUpdate id={item.id} />
+            <FormUpdate item={item} />
           </Modal>
         )}
         <button onClick={() => onRemove(item.id)}>

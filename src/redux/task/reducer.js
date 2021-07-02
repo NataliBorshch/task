@@ -8,8 +8,7 @@ const items = createReducer([], {
   [actions.removeTaskSuccess]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
   [actions.updateTaskSuccess]: (state, { payload }) =>
-    state.map(item =>(item.id === payload.id ? item : payload),
-    ),
+    state.map(item => (item.id !== payload.id ? item : payload)),
   [actions.rejectionTaskSuccess]: (state, { payload }) => [...state, payload],
 });
 //done
@@ -17,9 +16,7 @@ const filter = createReducer('', {
   [actions.filterTask]: (_, { payload }) => payload,
 });
 //done
-const taskById = createReducer('', {
-  [actions.getTaskByIdSuccess]: (_, { payload }) => payload,
-});
+
 //done
 const isLoading = createReducer(false, {
   [actions.getTaskRequest]: () => true,
@@ -47,7 +44,6 @@ const taskReducer = combineReducers({
   items,
   filter,
   isLoading,
-  taskById,
 });
 
 export default taskReducer;

@@ -43,8 +43,6 @@ const updateTask = (id, data) => dispatch => {
     .catch(error => dispatch(actions.updateTaskError(error.message)));
 };
 
-
-
 const rejectionTask = id => dispatch => {
   dispatch(actions.removeTaskRequest());
   axios
@@ -55,21 +53,10 @@ const rejectionTask = id => dispatch => {
     .catch(error => actions.rejectionTaskError(error.message));
 };
 
-const getById = id => dispatch => {
-  dispatch(actions.getTaskByIdRequest());
-  axios
-    .get(`/task/${id}`)
-    .then(({ data }) => {
-      dispatch(actions.getTaskByIdSuccess(data));
-    })
-    .catch(error => dispatch(actions.getTasByIdkError(error.message)));
-};
-
 export default {
   getTask,
   addTask,
   updateTask,
   removeTask,
   rejectionTask,
-  getById,
 };
