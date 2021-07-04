@@ -1,36 +1,54 @@
-form {
+.form_create_task {
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-family: 'Benne', serif;
   font-style: italic;
   padding: 5px;
+  width: 350px;
 }
 
-label {
-  font-family: 'Benne', serif;
-  font-style: italic;
-  font-size: 20px;
-}
-
-input {
-  display: block;
-  padding: 5px;
-  border-radius: 5px;
-  border: none;
+.form_label {
+  width: 100%;
+  flex-direction: column;
+  text-align: start;
+  display: flex;
+  font-family: 'Uchen', serif;
   font-size: 15px;
-  margin-right: 15px;
-}
-input::placeholder {
-  font-family: 'Benne', serif;
-  font-style: italic;
+  color: rgb(14, 105, 90);
+  text-transform: uppercase;
 }
 
-.form_btn {
-  background-color: #5892ddee;
-  border: none;
-  padding: 0px;
-  border-radius: 100%;
+.form_input {
+  display: block;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 15px;
+  border: 2px solid white;
+  margin: 8px 0;
   outline: none;
-  height: 40px;
-  width: 40px;
+}
+.form_input:hover,
+.form_input:active,
+.form_input:focus {
+  border: 2px solid rgba(56, 187, 165, 0.616);
+}
+
+.form_create_btn {
+  background: inherit;
+  border-radius: 100%;
+  border: none;
+  outline: none;
+  padding: 0px;
+}
+
+.btn_icon {
+  color: white;
+}
+
+.btn_icon:focus,
+.btn_icon:active,
+.btn_icon:hover {
+  color: rgba(43, 168, 147, 0.616);
 }

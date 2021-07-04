@@ -29,18 +29,18 @@ export default function Task({ item }) {
 
   return (
     <>
-      <th>{item.id}</th>
-      <th>{item.name}</th>
-      <th>{item.date_created}</th>
-      <th>{item.description}</th>
-      <th>
+      <td>{item.id}</td>
+      <td>{item.name}</td>
+      <td>{item.date_created}</td>
+      <td>{item.description}</td>
+      <td>
         <input
           type="checkbox"
           checked={item.priority}
           onChange={onTogglePriority}
         />
-      </th>
-      <th>
+      </td>
+      <td>
         <select
           className="status_option"
           value={item.status}
@@ -48,8 +48,8 @@ export default function Task({ item }) {
         >
           <option>{item.status}</option>
         </select>
-      </th>
-      <th>
+      </td>
+      <td>
         <button onClick={onRejectTask}>
           <Icon icon="minus" size={20} color="red" />
         </button>
@@ -64,7 +64,7 @@ export default function Task({ item }) {
         <button onClick={() => onRemove(item.id)}>
           <Icon icon="delete" size={20} color="red" />
         </button>
-      </th>
+      </td>
     </>
   );
 }

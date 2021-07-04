@@ -1,72 +1,75 @@
-import './Form.scss';
-import React, { useCallback, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import operations from '../../redux/task/operations';
 import Icon from '../Icon';
-
-export default function FormCreateTask() {
-  const initialState = {
+import './Form.scss';
+//done
+class FormCreateTask extends Component {
+  state = {
     name: '',
-    date_created: new Date(),
     description: '',
+    date_created: new Date(),
     status: 'todo',
     priority: false,
   };
 
-  const [task, setTask] = useState(initialState);
-  const dispatch = useDispatch();
+  handleInput = evt => {
+    const { value, name } = evt.target;
+    this.setState({ [name]: value });
+  };
 
-  const addTask = useCallback(
-    data => {
-      console.log(data);
-      dispatch(operations.addTask(data));
-    },
-    [dispatch ],
-  );
+  handleSubmit = evt => {
+    evt.preventDefault();
+    console.log(this.state);
+    this.props.addTask({ ...this.state });
+    this.reset();
+  };
 
-  const handleInput = useCallback(evt => {
-    const value = evt.target.name;
-    setTask(prev => ({ ...prev, [value]: evt.target.value }));
-  }, []);
+  reset = () => {
+    this.setState({ name: '', description: '' });
+  };
 
-  const handleSubmit = useCallback(
-    evt => {
-      evt.preventDefault();
-      addTask(task);
-      setTask(initialState);
-    },
-    [task, addTask, initialState],
-  );
+  render() {
+    const { name, description } = this.state;
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Name Task
-        <input
-          type="text"
-          placeholder="name task"
-          value={task.name}
-          name="name"
-          onChange={handleInput}
-          required
-        />
-      </label>
+    return (
+      <form onSubmit={this.handleSubmit} className="form_create_task">
+        <label className="form_label">
+          Name Task
+          <input
+            type="text"
+            placeholder="name task"
+            value={name}
+            name="name"
+            onChange={this.handleInput}
+            required
+            className="form_input"
+          />
+        </label>
 
-      <label>
-        Description
-        <input
-          type="text"
-          placeholder="description task"
-          required
-          name="description"
-          value={task.description}
-          onChange={handleInput}
-        />
-      </label>
+        <label className="form_label">
+          Description
+          <input
+            type="text"
+            placeholder="description task"
+            required
+            name="description"
+            value={description}
+            onChange={this.handleInput}
+            className="form_input"
+          />
+        </label>
 
-      <button type="submit" className="form_btn">
-        <Icon icon="plus" size={40} color="white" />
-      </button>
-    </form>
-  );
+        <button type="submit" className="form_create_btn">
+          <Icon icon="plus" size={60} className="btn_icon" />
+        </button>
+      </form>
+    );
+  }
 }
+
+const mapDispatchToProps = dispatch => ({
+  addTask: item => dispatch(operations.addTask(item)),
+});
+
+export default connect(null, mapDispatchToProps)(FormCreateTask);

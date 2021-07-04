@@ -3,84 +3,114 @@ import { useEffect, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import operations from '../../redux/task/operations';
 import './FormUpdate.scss';
+import Select from 'react-select';
+import { Component } from 'react';
+import { Checkbox } from '@material-ui/core';
+import Task from '../Task';
 
-export default function FormUpdate({ item }) {
-  const status = ['todo', 'ready', 'in progress', 'complited'];
-  const dispatch = useDispatch();
-  const [task, setTask] = useState({});
+const options = [
+  { value: 'todo', label: 'todo' },
+  { value: 'ready', label: 'ready' },
+  { value: 'in progress', label: 'in progress' },
+  { value: 'complited', label: 'complited' },
+];
 
-  useEffect(() => {
-    setTask(item);
-  }, [item]);
+class FormUpdate extends Component {
+  state = {
+    selectedOption: null,
+  };
 
-  const handleInput = useCallback(evt => {
-    const value =
-      evt.target.type === 'checkbox' ? evt.target.checked : evt.target.value;
-    const name = evt.target.name;
-    setTask(prev => ({ ...prev, [name]: value }));
-  }, []);
+  handleChange = selectedOption => {
+    this.setState({ selectedOption });
+    console.log(`Option selected:`, selectedOption);
+  };
+  // const status = ['todo', 'ready', 'in progress', 'complited'];
+  // const dispatch = useDispatch();
+  // const [task, setTask] = useState({});
 
-  const updateTask = useCallback(
-    data => {
-      dispatch(operations.updateTask(item.id, data));
-    },
-    [dispatch, item.id],
-  );
+  // useEffect(() => {
+  //   setTask(item);
+  // }, [item]);
 
-  const handleSubmit = useCallback(
-    evt => {
-      evt.preventDefault();
-      updateTask({ ...task, date_created: new Date() });
-    },
-    [task, updateTask],
-  );
+  // const handleInput = useCallback(evt => {
+  //   const value =
+  //     evt.target.type === 'checkbox' ? evt.target.checked : evt.target.value;
+  //   const name = evt.target.name;
+  //   setTask(prev => ({ ...prev, [name]: value }));
+  // }, []);
 
-  return (
-    task && (
-      <form className="form_update" onSubmit={handleSubmit}>
-        <label>
+  // const updateTask = useCallback(
+  //   data => {
+  //     dispatch(operations.updateTask(item.id, data));
+  //   },
+  //   [dispatch, item.id],
+  // );
+
+  // const handleSubmit = useCallback(
+  //   evt => {
+  //     evt.preventDefault();
+  //     updateTask({ ...task, date_created: new Date() });
+  //   },
+  //   [task, updateTask],
+  // );
+  render() {
+    return (
+      <form className="form_update" onSubmit={this.handleSubmit}>
+        <label className="form_label">
           Name
-          <input value={task.name} name="name" onChange={handleInput} />
-        </label>
-        <label>
-          Descriptions
           <input
-            value={task.description}
-            name="description"
-            onChange={handleInput}
+            // value={task.name}
+            name="name"
+            // onChange={handleInput}
+            className="form_input"
           />
         </label>
-        <label>
+        <label className="form_label">
+          Descriptions
+          <input
+            // value={task.description}
+            name="description"
+            // onChange={handleInput}
+            className="form_input"
+          />
+        </label>
+        <label className="form_label">
           Priority
           <input
             type="checkbox"
-            checked={task.priority}
+            // checked={task.priority}
             name="priority"
-            onChange={handleInput}
+            onChange={this.handleInput}
+            className="form_input"
           />
         </label>
 
-        <label>
-          Status
-          <select
-            className="task_status"
-            value={task.status}
-            name="status"
-            onChange={handleInput}
-          >
-            {status.map(item => {
-              return (
-                <option key={uuidv4()} value={item} name="status">
-                  {item}
-                </option>
-              );
-            })}
-          </select>
-        </label>
-        <button type="submit" onClick={handleSubmit}>
+        {/* <Checkbox
+          value={this.state.task.priority}
+          inputProps={{ 'aria-label': 'Checkbox A' }}
+        /> */}
+
+        <Select
+          value={this.state.selectedOption}
+          onChange={this.handleChange}
+          options={options}
+          name={options}
+          theme={theme => ({
+            ...theme,
+            borderRadius: 0,
+            colors: {
+              ...theme.colors,
+              primary25: 'hotpink',
+              primary: 'dangerLight',
+            },
+          })}
+        />
+        <button type="submit" onClick={this.handleSubmit} className="form_btn">
           Save
         </button>
       </form>
-    )
-  );
+    );
+  }
 }
+
+export default FormUpdate;

@@ -1,5 +1,9 @@
-import "./Container.scss";
+import './Container.scss';
 
-export default function Container({ children }) {
+//done
+
+const Container = ({ children }) => {
   return <div className="container">{children}</div>;
-}
+};
+
+export default Container;

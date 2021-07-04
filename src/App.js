@@ -1,32 +1,49 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import AppBar from './components/AppBar';
+import React, { lazy, Suspense, Component } from 'react';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Container from './components/Container';
-import ListTask from './components/ListTask.jsx/ListTask';
-import operations from './redux/task/operations';
-import selectors from './redux//task/selectors';
-import Timer from './components/Timer';
-import Panel from './components/Panel';
+import AppBar from './components/AppBar/AppBar';
+import routers from './routers/routers';
+import { Router } from '@material-ui/icons';
 
-function App() {
-  const dispatch = useDispatch();
-  const isLoading = useSelector(selectors.isLoading);
-  
+const MainPage = lazy(() =>
+  import('./views/MainPage' /* webpackChunkName: "main-page" */),
+);
+const TasksPage = lazy(() =>
+  import('./views/TaskPage' /* webpackChunkName: "tasks-page" */),
+);
+const LoginPage = lazy(() =>
+  import('./views/LoginPage' /* webpackChunkName: "login-page" */),
+);
+const RegisterPage = lazy(() =>
+  import('./views/RegisterPage' /* webpackChunkName: "register-page" */),
+);
 
-  useEffect(() => {
-    dispatch(operations.getTask());
-   }, [] );
-
-  return (
-    <>
-      <AppBar />
-      <Container>
-        <Timer />
-        <Panel />
-        {isLoading ? <h1>Загружаем</h1> :<ListTask  />}
-      </Container>
-    </>
-  );
+class App extends Component {
+  componentDidMount() {}
+  render() {
+    return (
+      <>
+        <Container>
+          <AppBar />
+          <Suspense fallback={<h1>Loading</h1>}>
+            <Switch>
+              <Route path={routers.main} exact component={MainPage} />
+              <Route path={routers.tasks} component={TasksPage} />
+              <Route path={routers.register} component={RegisterPage} />
+              <Router path={routers.login} component={LoginPage} />
+              <Redirect path={routers.main} />
+            </Switch>
+          </Suspense>
+        </Container>
+      </>
+    );
+  }
 }
 
 export default App;
+// const mapDispatchToProps = {
+//   getCurrentUser: authOperations.getCurrentUser,
+// };
+
+// export default connect(null, mapDispatchToProps)(App);
