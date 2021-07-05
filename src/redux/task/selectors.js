@@ -3,7 +3,7 @@ import { createSelector } from '@reduxjs/toolkit';
 const getTasks = state => state.task.items;
 const getFilter = state => state.task.filter;
 
-const isLoading  =state=>  state.task.isLoaging;
+const isLoading = state => state.task.isLoading;
 
 const getVisibleTask = createSelector(
   [getTasks, getFilter],
@@ -19,5 +19,5 @@ export default {
   getFilter,
 
   getVisibleTask,
-  isLoading
+  isLoading,
 };

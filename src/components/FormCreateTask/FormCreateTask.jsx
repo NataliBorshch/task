@@ -3,12 +3,14 @@ import { connect } from 'react-redux';
 import operations from '../../redux/task/operations';
 import Icon from '../Icon';
 import './Form.scss';
+import moment from 'moment';
+
 //done
 class FormCreateTask extends Component {
   state = {
     name: '',
     description: '',
-    date_created: new Date(),
+    date_created: moment().format('DD:MM:YYYY hh:mm:ss'),
     status: 'todo',
     priority: false,
   };

@@ -3,6 +3,8 @@ import actions from '../../redux/task/actions';
 import './Filter.scss';
 import { connect } from 'react-redux';
 
+//DONE
+
 const Filter = ({ filter, getFilter }) => {
   return (
     <div className="filter_search">

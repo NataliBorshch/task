@@ -1,43 +1,6 @@
 {
   "task": [
     {
-      "name": "a",
-      "date_created": "2021-07-02T13:51:22.105Z",
-      "description": "a",
-      "status": "in progress",
-      "id": 1,
-      "priority": true
-    },
-    {
-      "name": "task133",
-      "date_created": "2021-07-02T14:40:08.227Z",
-      "description": "dfghf",
-      "status": "in progress",
-      "priority": true,
-      "id": 2
-    },
-    {
-      "name": "task3",
-      "date_created": "2021-07-02T13:09:12.567Z",
-      "description": "sort",
-      "status": "in progress",
-      "priority": true,
-      "id": 3
-    },
-    {
-      "name": "b",
-      "date_created": "2021-07-02T13:51:38.057Z",
-      "description": "ghjghj",
-      "status": "todo",
-      "priority": false,
-      "id": 4
-    },
-    {
-      "name": "Natali",
-      "description": "fhfh",
-      "id": 5
-    },
-    {
       "name": "Natali",
       "description": "rtyhrty",
       "date_created": "2021-07-03T16:14:12.468Z",
@@ -52,6 +15,22 @@
       "status": "todo",
       "priority": false,
       "id": 7
+    },
+    {
+      "name": "nataliia",
+      "description": "fghfghf",
+      "date_created": "05:07:2021 09:30:55",
+      "status": "todo",
+      "priority": false,
+      "id": 10
+    },
+    {
+      "name": "dfgd",
+      "description": "dfghf",
+      "date_created": "05:07:2021 12:07:51",
+      "status": "todo",
+      "priority": false,
+      "id": 11
     }
   ],
   "user": []
