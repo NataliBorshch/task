@@ -22,6 +22,9 @@ const rejectionTaskError = createAction('task/rejectionTaskError');
 
 const filterTask = createAction('task/Filter');
 
+const SortTaskUp = createAction('tasks/sortTaskUp');
+const SortTaskDown = createAction('task/SortTaskDown');
+
 export default {
   getTaskRequest,
   getTaskSuccess,
@@ -44,4 +47,6 @@ export default {
   rejectionTaskError,
 
   filterTask,
+  SortTaskUp,
+  SortTaskDown,
 };

@@ -1,3 +1,5 @@
+import { useDispatch } from 'react-redux';
+import { useState, useCallback } from 'react';
 import Icon from '../Icon';
 import Modal from '../../components/Modal';
 import FormUpdate from '../FormUpdate/FormUpdate';
@@ -10,60 +12,68 @@ class Task extends Component {
     showModal: false,
   };
 
-  componentDidMount() {
+  openModal = () => {
     this.setState({ showModal: true });
-  }
-
-  componentWillUnmount() {
+  };
+  onCloseModal = () => {
     this.setState({ showModal: false });
-  }
+  };
 
-  onCloseModal() {
-    this.setState({ showModal: false });
-  }
+  onRejectTask = event => {
+    console.dir(event.target);
+  };
+
+  onTogglePriority = event => {
+    console.log(event.target.checked);
+  };
 
   render() {
-    const { showModal } = this.state;
     const { item } = this.props;
     return (
-      item && (
-        <>
-          <td>{item.id}</td>
-          <td>{item.name}</td>
-          <td>{item.date_created}</td>
-          <td>{item.description}</td>
-          <td>
-            <input
-              type="checkbox"
-              checked={item.priority}
-              onChange={this.onTogglePriority}
-            />
-          </td>
-          <td>
-            <select
-              className="status_option"
-              value={item.status}
-              onChange={() => {}}
-            >
-              <option>{item.status}</option>
-            </select>
-          </td>
-          <td>
-            <button onClick={this.onRejectTask}>
-              <Icon icon="minus" size={20} color="red" />
-            </button>
-            <button onClick={this.openModal}>
-              <Icon icon="edit" size={20} color="blue" />
-            </button>
-
-            <button onClick={() => this.props.onRemove(item.id)}>
-              <Icon icon="delete" size={20} color="red" />
-            </button>
-          </td>
-        </>
-      )
+      <>
+        <th>{item.id}</th>
+        <th>{item.name}</th>
+        <th>{item.date_created}</th>
+        <th>{item.description}</th>
+        <th>
+          <input
+            type="checkbox"
+            checked={item.priority}
+            // onChange={this.onTogglePriority}
+          />
+        </th>
+        <th>
+          <select
+            className="status_option"
+            value={item.status}
+            onChange={() => {}}
+          >
+            <option>{item.status}</option>
+          </select>
+        </th>
+        <th>
+          {/* <button onClick={this.onRejectTask}>
+            <Icon icon="minus" size={20} color="red" />
+          </button> */}
+          <button onClick={this.openModal}>
+            <Icon icon="edit" size={20} color="blue" />
+          </button>
+          {/* {this.state.showModal && (
+            <Modal onClose={this.onCloseModal}>
+              <FormUpdate item={item} />
+            </Modal>
+          )} */}
+          {/* <button onClick={() => this.props.onRemove(item.id)}>
+            <Icon icon="delete" size={20} color="red" />
+          </button> */}
+        </th>
+      </>
     );
   }
 }
 
-export default Task;
+const mapDispatchToProps = dispatch => ({
+  onRemove: id => dispatch(operations.removeTask(id)),
+});
+
+export default (null, mapDispatchToProps)(Task);

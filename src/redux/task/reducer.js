@@ -1,6 +1,23 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 import actions from './actions';
+import sortBy from 'lodash.sortby';
+
+const sortByUp = (state, value) => {
+  return sortBy(state, [
+    function (o) {
+      return o[value];
+    },
+  ]);
+};
+
+const sortByDown = (state, value) => {
+  return sortBy(state, [
+    function (o) {
+      return o[value];
+    },
+  ]);
+};
 
 const items = createReducer([], {
   [actions.getTaskSuccess]: (_, { payload }) => [...payload],
@@ -10,6 +27,10 @@ const items = createReducer([], {
   [actions.updateTaskSuccess]: (state, { payload }) =>
     state.map(item => (item.id !== payload.id ? item : payload)),
   [actions.rejectionTaskSuccess]: (state, { payload }) => [...state, payload],
+  [actions.SortTaskUp]: (state, { payload }) => [...sortByUp(state, payload)],
+  [actions.SortTaskDown]: (state, { payload }) => [
+    ...sortByDown(state, payload).reverse(),
+  ],
 });
 //done
 const filter = createReducer('', {

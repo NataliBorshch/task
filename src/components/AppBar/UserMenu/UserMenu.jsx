@@ -1,4 +1,4 @@
-const UserMenu = () => {
+const UserMenu = ({ name }) => {
   return (
     <div>
       <img
@@ -7,7 +7,7 @@ const UserMenu = () => {
         height="auto"
         src="https://ik.imagekit.io/s2fpg15d4rx/kisspng-computer-icons-portable-network-graphics-user-icon-my-b-tab-svg-png-icon-free-download-8-584-onl-5bfa37607f3959.2067798415431248325211_-Xj5AVLFlyoz.png"
       />
-      <p>Wellcome Name</p>
+      <p>Wellcome {name ? name : 'Guest'}</p>
       <button>
         Log off
         <img

@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import routers from '../../routers/routers';
+import routers from '../../../routers/routers';
 
-const Navigation = ({ isAuthenticated }) => {
+const Navigation = ({ isAuthenticated = true }) => {
   return (
     <nav>
       <ul>
@@ -18,16 +18,18 @@ const Navigation = ({ isAuthenticated }) => {
           </NavLink>
         </li>
 
-        <li>
-          <NavLink
-            exact
-            to={routers.tasks}
-            className="nav_item"
-            activeClassName="nav_activ"
-          >
-            Task
-          </NavLink>
-        </li>
+        {isAuthenticated && (
+          <li>
+            <NavLink
+              exact
+              to={routers.tasks}
+              className="nav_item"
+              activeClassName="nav_activ"
+            >
+              Task
+            </NavLink>
+          </li>
+        )}
       </ul>
     </nav>
   );
