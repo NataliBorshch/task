@@ -5,7 +5,7 @@ import routers from '../../routers/routers';
 
 const AuthNav = () => {
   return (
-    <ul>
+    <ul id="auth_nav">
       <li key={uuidv4()}>
         <NavLink
           to={routers.login}

@@ -8,9 +8,9 @@ import Filter from '../components/Filter';
 import './TaskPage.scss';
 
 class TaskPage extends Component {
-  // componentDidMount() {
-  //   this.props.getTask();
-  // }
+  componentDidMount() {
+    this.props.getTask();
+  }
   render() {
     return (
       <div className="tasks_page">
