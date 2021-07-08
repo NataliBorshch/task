@@ -8,6 +8,7 @@ const AuthNav = () => {
     <ul id="auth_nav">
       <li key={uuidv4()}>
         <NavLink
+          id="login"
           to={routers.login}
           className="nav_item"
           activeClassName="nav_activ"
@@ -17,6 +18,7 @@ const AuthNav = () => {
       </li>
       <li key={uuidv4()}>
         <NavLink
+          id="singin"
           to={routers.register}
           className="nav_item"
           activeClassName="nav_activ"

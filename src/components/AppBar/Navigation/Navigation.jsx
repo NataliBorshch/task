@@ -13,6 +13,7 @@ const Navigation = ({ isAuthenticated }) => {
             to={routers.main}
             className="nav_item"
             activeClassName="nav_activ"
+            id="main"
           >
             Main
           </NavLink>
@@ -25,6 +26,7 @@ const Navigation = ({ isAuthenticated }) => {
               to={routers.tasks}
               className="nav_item"
               activeClassName="nav_activ"
+              id="task"
             >
               Task
             </NavLink>
