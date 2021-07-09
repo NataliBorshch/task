@@ -1,11 +1,8 @@
 import * as React from 'react';
 import { mount, shallow } from 'enzyme';
 import ListTask from '../ListTask';
-import Task from '../Task/Task';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-
-jest.mock('../ListTask');
 
 describe('ListTask Components Utin Test  ', () => {
   const mockStore = configureStore();
@@ -45,7 +42,7 @@ describe('ListTask Components Utin Test  ', () => {
   });
   it('ListTask Unit Test  render component ', () => {
     expect(wrapper.length).toBe(1);
-    expect(wrapper.find(Task).props('tasks')).toEqual(initialState.tasks);
+    expect(wrapper.state().props('tasks')).toEqual(initialState.tasks);
     // sections.simulate('click');
     // expect(store.sortByDown()).toBeCalled();
   });

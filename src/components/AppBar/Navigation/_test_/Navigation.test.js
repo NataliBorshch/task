@@ -9,10 +9,6 @@ configure({ adapter: new Adapter() });
 
 describe('Navigation Components Utin Test  ', () => {
   let wrapper;
-  // beforeEach(() => {
-  //   wraper.unmount();
-  // });
-
   it('Navigation Unit Test  witch Authenticated ', () => {
     wrapper = shallow(<Navigation isAuthenticated={true} id="nav" />);
     const nav = wrapper.find(NavLink);
