@@ -1,12 +1,12 @@
 import { v4 as uuidv4 } from 'uuid';
-import { useEffect, useState, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import operations from '../../redux/task/operations';
 import './FormUpdate.scss';
 import Select from 'react-select';
 import { Component } from 'react';
 import { Checkbox } from '@material-ui/core';
-import Task from '../Task';
+import { connect } from 'react-redux';
+
+const status = ['todo', 'ready', 'in progress', 'complited'];
 
 const options = [
   { value: 'todo', label: 'todo' },
@@ -17,27 +17,26 @@ const options = [
 
 class FormUpdate extends Component {
   state = {
-    selectedOption: null,
+    task: {},
   };
 
   handleChange = selectedOption => {
-    this.setState({ selectedOption });
-    console.log(`Option selected:`, selectedOption);
+    console.log(selectedOption.value);
+    this.setState(prev => ({
+      task: { ...prev, status: selectedOption.value },
+    }));
   };
-  // const status = ['todo', 'ready', 'in progress', 'complited'];
-  // const dispatch = useDispatch();
-  // const [task, setTask] = useState({});
 
-  // useEffect(() => {
-  //   setTask(item);
-  // }, [item]);
+  handleInput = evt => {
+    const value =
+      evt.target.type === 'checkbox' ? evt.target.checked : evt.target.value;
+    const name = evt.target.name;
+    this.setState(prev => ({ task: { ...prev, [name]: value } }));
+  };
 
-  // const handleInput = useCallback(evt => {
-  //   const value =
-  //     evt.target.type === 'checkbox' ? evt.target.checked : evt.target.value;
-  //   const name = evt.target.name;
-  //   setTask(prev => ({ ...prev, [name]: value }));
-  // }, []);
+  componentDidMount() {
+    this.setState({ task: { ...this.props.task } });
+  }
 
   // const updateTask = useCallback(
   //   data => {
@@ -54,44 +53,39 @@ class FormUpdate extends Component {
   //   [task, updateTask],
   // );
   render() {
+    const { task } = this.state;
+    console.log(task);
+
     return (
-      <form className="form_update" onSubmit={this.handleSubmit}>
+      <form className="form_update">
         <label className="form_label">
           Name
           <input
-            // value={task.name}
+            value={task.name}
             name="name"
-            // onChange={handleInput}
+            onChange={this.handleInput}
             className="form_input"
           />
         </label>
         <label className="form_label">
           Descriptions
           <input
-            // value={task.description}
+            value={task.description}
             name="description"
-            // onChange={handleInput}
-            className="form_input"
-          />
-        </label>
-        <label className="form_label">
-          Priority
-          <input
-            type="checkbox"
-            // checked={task.priority}
-            name="priority"
             onChange={this.handleInput}
             className="form_input"
           />
         </label>
-
-        {/* <Checkbox
+        <Checkbox
           value={this.state.task.priority}
+          name="priority"
           inputProps={{ 'aria-label': 'Checkbox A' }}
-        /> */}
+          onClick={this.handleInput}
+          checked={this.state.task.priority}
+        />
 
         <Select
-          value={this.state.selectedOption}
+          value={this.state.task.status}
           onChange={this.handleChange}
           options={options}
           name={options}
@@ -105,7 +99,7 @@ class FormUpdate extends Component {
             },
           })}
         />
-        <button type="submit" onClick={this.handleSubmit} className="form_btn">
+        <button type="submit" className="form_btn">
           Save
         </button>
       </form>
@@ -113,4 +107,13 @@ class FormUpdate extends Component {
   }
 }
 
-export default FormUpdate;
+const mapStateToProps = state => ({
+  // tasks: selectors.getVisibleTask(state),
+});
+
+const mapDispatchToProps = dispatch => ({
+  // sortByUp: value => dispatch(actions.SortTaskUp(value)),
+  // sortByDown: value => dispatch(actions.SortTaskDown(value)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(FormUpdate);

@@ -8,6 +8,7 @@ const getTask = () => dispatch => {
   axios
     .get('/task')
     .then(({ data }) => {
+      console.log(data);
       return dispatch(actions.getTaskSuccess(data));
     })
     .catch(error => dispatch(actions.getTaskError(error.message)));

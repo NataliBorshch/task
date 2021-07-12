@@ -1,18 +1,18 @@
-import { useDispatch } from 'react-redux';
-import { useState, useCallback } from 'react';
-import Icon from '../Icon';
-import Modal from '../../components/Modal';
-import FormUpdate from '../FormUpdate/FormUpdate';
-import operations from '../../redux/task/operations';
-import './Task.scss';
 import { Component } from 'react';
+import Icon from '../Icon';
+import './Task.scss';
+import Modal from '../Modal/Modal';
+import FormUpdate from '../FormUpdate';
+// import actions from '../../redux/task';
+import { connect } from 'react-redux';
+import operations from '../../redux/task/operations';
 
 class Task extends Component {
   state = {
     showModal: false,
   };
 
-  openModal = () => {
+  openModal = event => {
     this.setState({ showModal: true });
   };
   onCloseModal = () => {
@@ -20,52 +20,54 @@ class Task extends Component {
   };
 
   onRejectTask = event => {
-    console.dir(event.target);
+    // console.dir(event.target);
   };
 
   onTogglePriority = event => {
-    console.log(event.target.checked);
+    // console.log(event.target.checked);
   };
 
   render() {
-    const { item } = this.props;
+    const { item, onDelete } = this.props;
     return (
       <>
-        <th>{item.id}</th>
-        <th>{item.name}</th>
-        <th>{item.date_created}</th>
-        <th>{item.description}</th>
+        <th id="id">{item.id}</th>
+        <th id="name">{item.name}</th>
+        <th id="date">{item.date_created}</th>
+        <th id="description">{item.description}</th>
         <th>
           <input
+            id="priority"
             type="checkbox"
             checked={item.priority}
             // onChange={this.onTogglePriority}
           />
         </th>
         <th>
-          <select
-            className="status_option"
-            value={item.status}
-            onChange={() => {}}
-          >
-            <option>{item.status}</option>
+          <select className="status_option" value={item.status}>
+            <option id="status">{item.status}</option>
           </select>
         </th>
         <th>
-          {/* <button onClick={this.onRejectTask}>
+          <button>
             <Icon icon="minus" size={20} color="red" />
-          </button> */}
-          <button onClick={this.openModal}>
-            <Icon icon="edit" size={20} color="blue" />
           </button>
-          {/* {this.state.showModal && (
-            <Modal onClose={this.onCloseModal}>
-              <FormUpdate item={item} />
-            </Modal>
-          )} */}
-          {/* <button onClick={() => this.props.onRemove(item.id)}>
+          <button onClick={this.openModal} type="button">
+            <Icon icon="edit" size={20} color="blue" />
+            {this.state.showModal && (
+              <Modal onClose={this.onCloseModal}>
+                <FormUpdate task={item} />
+              </Modal>
+            )}
+          </button>
+
+          <button
+            type="button"
+            id="delete_task"
+            onClick={() => onDelete(item.id)}
+          >
             <Icon icon="delete" size={20} color="red" />
-          </button> */}
+          </button>
         </th>
       </>
     );
@@ -73,7 +75,9 @@ class Task extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  onRemove: id => dispatch(operations.removeTask(id)),
+  onDelete: id => dispatch(operations.removeTask(id)),
 });
 
-export default (null, mapDispatchToProps)(Task);
+export default connect(null, mapDispatchToProps)(Task);
+
+export { Task };

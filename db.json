@@ -2,43 +2,27 @@
   "task": [
     {
       "name": "Natali",
-      "description": "rtyhrty",
-      "date_created": "2021-07-03T16:14:12.468Z",
+      "description": "1222",
+      "date_created": "12:07:2021 10:33:22",
       "status": "todo",
       "priority": false,
-      "id": 6
+      "id": 1
     },
     {
-      "name": "Natali Borshch",
-      "description": "fhfh",
-      "date_created": "2021-07-03T16:14:12.468Z",
+      "name": "Natali",
+      "description": "fhfghf",
+      "date_created": "12:07:2021 10:33:22",
       "status": "todo",
       "priority": false,
-      "id": 7
+      "id": 3
     },
     {
-      "name": "nataliia",
-      "description": "fghfghf",
-      "date_created": "05:07:2021 09:30:55",
+      "name": "fhfgh",
+      "description": "hf",
+      "date_created": "12:07:2021 10:42:39",
       "status": "todo",
       "priority": false,
-      "id": 10
-    },
-    {
-      "name": "dfgd",
-      "description": "dfghf",
-      "date_created": "05:07:2021 12:07:51",
-      "status": "todo",
-      "priority": false,
-      "id": 11
-    },
-    {
-      "name": "Natali Borshch",
-      "description": "rtyhrty",
-      "date_created": "06:07:2021 01:42:01",
-      "status": "todo",
-      "priority": false,
-      "id": 12
+      "id": 4
     }
   ],
   "user": []

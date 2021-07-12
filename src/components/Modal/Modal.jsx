@@ -7,6 +7,8 @@ const modalRoot = document.getElementById('modal-root');
 
 class Modal extends Component {
   handleModalOverlay = event => {
+    // console.dir(event.target);
+    // console.dir(event.currentTarget);
     if (event.target === event.currentTarget) {
       this.props.onClose();
     }

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import './RegisterPage.scss';
+import '../RegisterPage.scss';
 
-class RegisterPage extends Component {
+class LoginPage extends Component {
   state = {
-    name: '',
     email: '',
     password: '',
   };
@@ -20,23 +19,16 @@ class RegisterPage extends Component {
   render() {
     return (
       <div className="register_page">
-        <h1 className="page_name">Registration </h1>
+        <h1 className="page_name">Log In </h1>
         <form className="register_form" onSubmit={this.handleSubmit}>
-          <label className="form_label">
-            Name
-            <input
-              className="form_input"
-              required
-              type="text"
-              onChange={this.handleChange}
-            />
-          </label>
           <label className="form_label">
             Email
             <input
+              value={this.state.email}
               className="form_input"
               required
               type="email"
+              id="email"
               onChange={this.handleChange}
             />
           </label>
@@ -44,13 +36,15 @@ class RegisterPage extends Component {
             Password
             <input
               className="form_input"
+              value={this.state.password}
               required
               type="text"
+              id="password"
               onChange={this.handleChange}
             />
           </label>
           <button type="submit" className="form_btn">
-            Sing IN
+            log in
           </button>
         </form>
       </div>
@@ -58,4 +52,4 @@ class RegisterPage extends Component {
   }
 }
 
-export default RegisterPage;
+export default LoginPage;

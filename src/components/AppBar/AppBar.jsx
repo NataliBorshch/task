@@ -4,7 +4,7 @@ import Navigation from '../AppBar/Navigation/Navigation';
 import AuthNav from './AuthNav';
 import Timer from '../../components/Timer';
 import UserMenu from '../AppBar/UserMenu/UserMenu';
-const AppBar = ({ isAuthenticated }) => {
+const AppBar = ({ isAuthenticated = true }) => {
   return (
     <header>
       <Navigation />

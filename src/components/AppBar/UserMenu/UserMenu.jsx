@@ -1,3 +1,5 @@
+import './UserMenu.scss';
+
 const UserMenu = ({ name }) => {
   return (
     <div id="usermenu">
@@ -12,10 +14,11 @@ const UserMenu = ({ name }) => {
       </p>
       <button>
         Log off
-        <img
+        {/* <img
           alt="logout"
           src="https://ik.imagekit.io/s2fpg15d4rx/imgbin_web-hosting-icon-logout-icon-arrow-icon-png_8SQmsSuCZ.png"
-        />
+          width="50px"
+        /> */}
       </button>
     </div>
   );

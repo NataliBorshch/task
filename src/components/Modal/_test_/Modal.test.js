@@ -1,41 +1,50 @@
 import * as React from 'react';
 import { mount, shallow } from 'enzyme';
-import Modal from '../Modal';
+import { Modal } from '../Modal';
+import ReactDOM from 'react-dom';
+
+const componentDidMountSpy = jest.spyOn(Modal.prototype, 'CompomentDidMount');
+const componentDidWillUnmountSpy = jest.spyOn(
+  Modal.prototype,
+  'cocomponentDidWillUnmount',
+);
+
+const props = { children: <h1>chiilder modal</h1> };
+const setUp = () => mount(<Modal {...props} />);
 
 describe('Modal Components Utin Test  ', () => {
   let wrapper;
 
-  const modalRoot = global.document.createElement('div');
-  modalRoot.setAttribute('id', 'modal-root');
-  const body = global.document.querySelector('body');
-  body.appendChild(modalRoot);
-
-  const Child = () => <div>"Yolo"</div>;
-  const handleClick = jest.fn();
+  beforeEach(() => {
+    jest.spyOn(document.body, 'appendChild').mockImplementation(() => {});
+    jest.spyOn(document.body, 'removeChild').mockImplementation(() => {});
+    wrapper = setUp();
+  });
 
   afterEach(() => {
+    document.body.appendChild.mockRestore();
+    document.body.removeChild.mockRestore();
+  });
+
+  beforeAll(() => {
+    ReactDOM.createPortal = jest.fn((element, node) => {
+      return element;
+    });
+  });
+
+  afterEach(() => {
+    ReactDOM.createPortal.mockClear();
+  });
+
+  it('should render Modal component Unit Test ', () => {
+    expect(wrapper).toBeDefined();
+  });
+  it('should render children when component mount ', () => {
+    expect(document.body.appendChild).toHaveBeenCalled(1);
+  });
+
+  it('should remove children when component unmount', () => {
     wrapper.unmount();
-  });
-
-  it('Modal Compoments render witch children ', () => {
-    wrapper = mount(
-      <Modal>
-        <Child />
-      </Modal>,
-    );
-
-    const modalRoot = global.document.querySelector('#modal-root');
-    expect(modalRoot).contains(Child).toBeTruthy();
-  });
-
-  it('Modal Unit  to be closer ', () => {
-    const modalRoot = global.document.querySelector('#modal-root');
-    modalRoot = mount(<Modal />);
-
-    const overlay = modalRoot.find('#modal-root');
-    overlay.simulate('click');
-
-    overlay.unmount();
-    expect(modalRoot).toBeFalsy();
+    expect(document.body.removeChild).toHaveBeenCalled(1);
   });
 });
