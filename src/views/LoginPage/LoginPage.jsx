@@ -14,7 +14,7 @@ class LoginPage extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    // this.props.onSubmit({ ...this.state });
+    this.props.onSubmit({ ...this.state });
   };
   render() {
     return (
@@ -52,4 +52,4 @@ class LoginPage extends Component {
   }
 }
 
-export default LoginPage;
+export default { LoginPage };

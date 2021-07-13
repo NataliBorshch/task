@@ -30,4 +30,14 @@ describe('LoginPage Components Utin Test  ', () => {
     expect(updateEmailInput.text()).toEqual('test@email');
     expect(updatePasswordInput.prop('value')).toEqual('password123456');
   });
+
+  it('LoginPage Submit ', () => {
+    const onSubmitMock = jest.fn();
+    wrapper = shallow(<LoginPage onSubmit={onSubmitMock} />);
+    const form = wrapper.find('register_form');
+    form.simulate('submit', { preventDefault: () => {} });
+    wrapper.update();
+    expect(wrapper.length).toEqual(1);
+    expect(onSubmitMock).toHaveBeenCalled();
+  });
 });

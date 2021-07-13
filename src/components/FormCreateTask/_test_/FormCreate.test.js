@@ -42,14 +42,6 @@ describe('FormCreateTask Components Utin Test', () => {
   });
 
   it('FormCreateTask add newTask', () => {
-    // const newTask = {
-    //   name: 'Natali',
-    //   description: 'fhfghf',
-    //   date_created: '12:07:2021 10:33:22',
-    //   status: 'todo',
-    //   priority: false,
-    //   id: 3,
-    // };
     const addTaskMock = jest.fn();
     wrapper = shallow(<FormCreateTask addTask={addTaskMock} />);
     const btnAdd = wrapper.find('.form_create_task');
