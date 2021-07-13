@@ -52,8 +52,8 @@ describe('FormCreateTask Components Utin Test', () => {
     // };
     const addTaskMock = jest.fn();
     wrapper = shallow(<FormCreateTask addTask={addTaskMock} />);
-    const btnAdd = wrapper.find('.form_create_btn');
-    btnAdd.simulate('submit');
+    const btnAdd = wrapper.find('.form_create_task');
+    btnAdd.simulate('submit', { preventDefault: () => {} });
     wrapper.update();
 
     expect(wrapper.length).toEqual(1);
