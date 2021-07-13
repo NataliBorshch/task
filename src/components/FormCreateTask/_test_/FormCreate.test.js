@@ -30,7 +30,7 @@ describe('FormCreateTask Components Utin Test', () => {
     expect(labelDescription.text()).toEqual('Description');
   });
 
-  it('FormCreateTask is LOading', () => {
+  it('FormCreateTask is initial state', () => {
     const addTaskMock = jest.fn();
     const newProps = {
       ...props,
@@ -41,23 +41,22 @@ describe('FormCreateTask Components Utin Test', () => {
     expect(wrapper.state()).toEqual(initialState);
   });
 
-  describe('when typing into name input', () => {
-    const nameTask = 'test1';
-    let wrapper = shallow(<FormCreateTask />);
+  it('FormCreateTask add newTask', () => {
+    // const newTask = {
+    //   name: 'Natali',
+    //   description: 'fhfghf',
+    //   date_created: '12:07:2021 10:33:22',
+    //   status: 'todo',
+    //   priority: false,
+    //   id: 3,
+    // };
+    const addTaskMock = jest.fn();
+    wrapper = shallow(<FormCreateTask addTask={addTaskMock} />);
+    const btnAdd = wrapper.find('.form_create_btn');
+    btnAdd.simulate('submit');
+    wrapper.update();
 
-    beforeEach(() => {
-      wrapper
-        .find('form_input')
-        .first()
-        .simulate('change', {
-          target: {
-            value: nameTask,
-            name: 'name',
-          },
-        });
-    });
-    it('updates name ', () => {
-      expect(wrapper.state().name).toEqual(name);
-    });
+    expect(wrapper.length).toEqual(1);
+    expect(addTaskMock).toHaveBeenCalled();
   });
 });
