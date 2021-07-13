@@ -14,22 +14,19 @@ describe('FormCreateTask Components Utin Test', () => {
     expect(labelNameTask.text()).toEqual('Name Task');
     expect(labelDescription.text()).toEqual('Description');
   });
-  it('FormCreateTask add newTask', () => {
-    // const newTask = {
-    //   name: 'Natali',
-    //   description: 'fhfghf',
-    //   date_created: '12:07:2021 10:33:22',
-    //   status: 'todo',
-    //   priority: false,
-    //   id: 3,
-    // };
-    const spy = jest.fn();
-    wrapper = shallow(<FormCreateTask addTask={spy} />);
-    const btnAdd = wrapper.find('.form_create_btn');
-    btnAdd.simulate('click');
-    wrapper.update();
 
-    expect(wrapper.length).toEqual(1);
-    expect(wrapper.props().addTask).toHaveBeenCalled();
+  it('FormCreateTask is LOading', () => {
+    wrapper = shallow(<FormCreateTask />);
+    const form = wrapper.find('.form_create_task');
   });
+
+  // it('FormCreateTask add newTask', () => {
+  //   wrapper = shallow(<FormCreateTask />);
+  //   const btnAdd = wrapper.find('.form_create_task');
+  //   const event = Object.assign(jest.fn(), { preventDefault: () => {} });
+  //   btnAdd.simulate('submit', event);
+  //   wrapper.update();
+  //   expect(wrapper.length).toEqual(1);
+  //   expect(event.preventDefault).toBeCalled();
+  // });
 });

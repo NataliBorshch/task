@@ -17,7 +17,6 @@ const getVisibleTask = createSelector(
 export default {
   getTasks,
   getFilter,
-
   getVisibleTask,
   isLoading,
 };

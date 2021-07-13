@@ -4,6 +4,7 @@ import operations from '../../redux/task/operations';
 import Icon from '../Icon';
 import './Form.scss';
 import moment from 'moment';
+import selectors from '../../redux/task/selectors';
 
 //done
 class FormCreateTask extends Component {
@@ -22,7 +23,6 @@ class FormCreateTask extends Component {
 
   handleSubmit = evt => {
     evt.preventDefault();
-    console.log(this.state);
     this.props.addTask({ ...this.state });
     this.reset();
   };
@@ -34,7 +34,9 @@ class FormCreateTask extends Component {
   render() {
     const { name, description } = this.state;
 
-    return (
+    return this.props.isLoading ? (
+      <p>Loading...</p>
+    ) : (
       <form onSubmit={this.handleSubmit} className="form_create_task">
         <label className="form_label">
           Name Task
@@ -70,10 +72,14 @@ class FormCreateTask extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  tasks: selectors.isLoading(state),
+});
+
 const mapDispatchToProps = dispatch => ({
   addTask: item => dispatch(operations.addTask(item)),
 });
 
-export default connect(null, mapDispatchToProps)(FormCreateTask);
+export default connect(mapStateToProps, mapDispatchToProps)(FormCreateTask);
 
 export { FormCreateTask };

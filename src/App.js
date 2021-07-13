@@ -10,7 +10,7 @@ const MainPage = lazy(() =>
   import('./views/MainPage' /* webpackChunkName: "main-page" */),
 );
 const TasksPage = lazy(() =>
-  import('./views/TaskPage' /* webpackChunkName: "tasks-page" */),
+  import('../src/views/TaskPage' /* webpackChunkName: "tasks-page" */),
 );
 const LoginPage = lazy(() =>
   import('./views/LoginPage' /* webpackChunkName: "login-page" */),
