@@ -22,8 +22,8 @@ describe('TaskPage Components Utin Test  ', () => {
       },
     };
     wrapper = shallow(<TaskPage {...newProps} />);
-    console.log(wrapper.debug());
-    const p = wrapper.find('#loading');
+    // console.log(wrapper.debug());
+    // const p = wrapper.find('#loading');
     //   не работает
     // expect(p.text()).toEqual('Loading...');
   });
@@ -41,5 +41,16 @@ describe('TaskPage Components Utin Test  ', () => {
     wrapper = shallow(<TaskPage {...props} />);
     const formCreateTask = wrapper.find('FormCreateTask');
     expect(formCreateTask).toBeDefined();
+  });
+  it('TaskPage  getAllTask ', () => {
+    const getTaskMock = jest.fn();
+    const newProps = {
+      ...props,
+      getTask: getTaskMock,
+    };
+    wrapper = shallow(<TaskPage {...newProps} />);
+
+    expect(wrapper).toBeDefined();
+    expect(getTaskMock).toHaveBeenCalled();
   });
 });

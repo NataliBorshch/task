@@ -44,10 +44,12 @@ const MainPage = () => {
         <img
           src="https://ik.imagekit.io/s2fpg15d4rx/time_NifncTLm-ND.jpg"
           alt="time"
+          id="time_img"
         />
         <img
           src="https://ik.imagekit.io/s2fpg15d4rx/glasses1_4_fSdw54Wgo.jpg"
           alt="glasses"
+          id="glasses"
         />
       </div>
     </div>

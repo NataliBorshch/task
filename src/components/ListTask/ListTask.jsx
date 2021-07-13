@@ -16,7 +16,11 @@ class ListTask extends Component {
               <tr>
                 <th className="table_header_item">
                   Number
-                  <button type="button" onClick={() => sortByUp('id')}>
+                  <button
+                    type="button"
+                    className="sort_up"
+                    onClick={() => sortByUp('id')}
+                  >
                     +
                   </button>
                   <button type="button" onClick={() => sortByDown('id')}>
@@ -97,5 +101,3 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListTask);
-
-export { ListTask };

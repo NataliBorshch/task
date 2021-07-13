@@ -73,7 +73,7 @@ class FormCreateTask extends Component {
 }
 
 const mapStateToProps = state => ({
-  tasks: selectors.isLoading(state),
+  isLoading: selectors.isLoading(state),
 });
 
 const mapDispatchToProps = dispatch => ({

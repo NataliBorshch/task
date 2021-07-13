@@ -10,12 +10,12 @@ const item = {
   priority: false,
   id: 3,
 };
-const onDelete = () => {};
 
 describe('Task Components Utin Test  ', () => {
   let wrapper;
   it('Task initial state  ', () => {
     wrapper = shallow(<Task item={item} />);
+    console.log(wrapper.debug());
     const id = wrapper.find('#id');
     const name = wrapper.find('#name');
     const date = wrapper.find('#date');
@@ -30,14 +30,15 @@ describe('Task Components Utin Test  ', () => {
     expect(priority.prop('checked')).toEqual(item.priority);
     expect(status.text()).toEqual(item.status);
   });
-  //   it('Task delete component ', () => {
-  //     wrapper = shallow(<Task item={item} />);
-  //     expect(wrapper.length).toEqual(1);
+  it('Task delete component ', () => {
+    const onDeleteMock = jest.fn();
+    const props = {
+      onDelete: onDeleteMock,
+    };
+    wrapper = shallow(<Task {...props} />);
+    const btnDelete = wrapper.find('.delete_task');
 
-  //     const btnDelete = wrapper.find('#delete_task');
-  //     btnDelete.simulate('click');
-  //     wrapper.update();
-  //     wrapper.find(Task);
-  //     expect(wrapper.length).toEqual(0);
-  //   });
+    btnDelete.simulate('click');
+    expect(onDeleteMock).toHaveBeenCalled();
+  });
 });
