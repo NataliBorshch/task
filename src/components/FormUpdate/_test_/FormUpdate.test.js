@@ -9,7 +9,7 @@ const initialState = {
   description: '',
 };
 
-describe('FormUpdate Components Utin Test', () => {
+describe('FormUpdate Components Unit Test', () => {
   let wrapper;
   it('FormUpdate initial state', () => {
     wrapper = shallow(<FormUpdate />);
