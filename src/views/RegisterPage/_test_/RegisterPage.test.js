@@ -32,6 +32,35 @@ describe('RegisterPage Components Utin Test  ', () => {
     expect(wrapper.length).toEqual(1);
     expect(onSubmitMock).toHaveBeenCalled();
   });
-  // пока не понятно
-  //   it('input handleChange ', () => {});
+
+  it('LoginPage handleChange input', () => {
+    wrapper = shallow(<RegisterPage />);
+    const inputName = wrapper.find('input').first();
+    const inputEmail = wrapper.find('input').at(1);
+    const inputPassword = wrapper.find('input').at(2);
+    inputName.simulate('change', {
+      target: {
+        value: 'Nina',
+        name: 'name',
+      },
+    });
+    inputEmail.simulate('change', {
+      target: {
+        value: 'nina@gmail.com',
+        name: 'email',
+      },
+    });
+
+    inputPassword.simulate('change', {
+      target: {
+        value: '12345678',
+        name: 'password',
+      },
+    });
+
+    wrapper.update();
+    expect(wrapper.state().name).toEqual('Nina');
+    expect(wrapper.state().email).toEqual('nina@gmail.com');
+    expect(wrapper.state().password).toEqual('12345678');
+  });
 });

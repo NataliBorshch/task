@@ -51,4 +51,26 @@ describe('FormCreateTask Components Utin Test', () => {
     expect(wrapper.length).toEqual(1);
     expect(addTaskMock).toHaveBeenCalled();
   });
+
+  it('FormCreate Task  handleChange input', () => {
+    wrapper = shallow(<FormCreateTask />);
+    const inputName = wrapper.find('input').first();
+    const inputDescription = wrapper.find('input').at(1);
+    inputName.simulate('change', {
+      target: {
+        value: 'Task1',
+        name: 'name',
+      },
+    });
+    inputDescription.simulate('change', {
+      target: {
+        value: 'create task with TS',
+        name: 'description',
+      },
+    });
+
+    wrapper.update();
+    expect(wrapper.state().name).toEqual('Task1');
+    expect(wrapper.state().description).toEqual('create task with TS');
+  });
 });

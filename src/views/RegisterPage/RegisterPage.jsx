@@ -29,6 +29,7 @@ class RegisterPage extends Component {
             <input
               className="form_input"
               required
+              name="name"
               type="text"
               onChange={this.handleChange}
             />
