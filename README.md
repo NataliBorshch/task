@@ -38,11 +38,24 @@ User want to have a system that allows to create tasks and proceed with them
 1. _Tasks can be rejected by configurable time_
 2. Task rejection time can be set using appropriate setting
 
-**_Acceptance criteria_** • Application should be applicable with REST
-approaches and have documented REST API for all resources • Application should
-have simple login system for few hardcoded users • Application should have
-unit-tests (Frontend) • Application should be easy to up and running and in good
-styles
+**_Acceptance criteria_**
 
-**_Technologies_** - Frontend ◦ ReactJs ◦ Redux ◦ Enzyme ◦ Jest ◦ SCSS • Backend
-◦ JsonServer • Code management ◦ Git ◦ bitbucket
+- Application should be applicable with REST approaches and have documented REST
+  API for all resources
+- Application should have simple login system for few hardcoded users
+- Application should have unit-tests (Frontend)
+- Application should be easy to up and running and in good styles
+
+**_Technologies_**
+
+- Frontend
+- ReactJs
+- Redux
+- Enzyme
+- Jest
+- SCSS
+- Backend
+- JsonServer
+- Code management
+- Git
+- bitbucket
