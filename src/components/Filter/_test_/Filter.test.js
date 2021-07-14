@@ -35,8 +35,8 @@ describe('Filter Components Utin Test  ', () => {
     const filter = wrapper.find('.form_input');
     filter.simulate('change');
     wrapper.update();
-    console.log(wrapper.debug());
+    // console.log(wrapper.debug());
     expect(filter.text()).toEqual('1');
-    expect(getFilterMock).toHaveBeenCalledWith(1);
+    expect(getFilterMock).toHaveBeenCalledWith('1');
   });
 });

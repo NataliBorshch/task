@@ -13,9 +13,9 @@ const props = {
   onSubmit: () => {},
 };
 
-describe('LoginPage Components Utin Test  ', () => {
+describe('LoginPage Components Utin Test', () => {
   let wrapper;
-  it('LoginPage initial state  ', () => {
+  it('LoginPage initial state', () => {
     wrapper = shallow(<LoginPage {...props} />);
     const formLogin = wrapper.find('.register_page');
     wrapper.setState(initialState);
@@ -23,7 +23,7 @@ describe('LoginPage Components Utin Test  ', () => {
     expect(wrapper.state()).toEqual(initialState);
   });
 
-  it('LoginPage Submit ', () => {
+  it('LoginPage Submit', () => {
     const onSubmitMock = jest.fn();
     wrapper = shallow(<LoginPage onSubmit={onSubmitMock} />);
     const form = wrapper.find('.register_form');
@@ -33,7 +33,7 @@ describe('LoginPage Components Utin Test  ', () => {
     expect(onSubmitMock).toHaveBeenCalled();
   });
 
-  it('LoginPage handleChange input ', () => {
+  it('LoginPage handleChange input', () => {
     const handleChangeMock = jest.fn();
     wrapper = shallow(<LoginPage />);
     const inputEmail = wrapper.find('input').first();
@@ -42,10 +42,11 @@ describe('LoginPage Components Utin Test  ', () => {
     });
 
     wrapper.update();
-    expect(handleChangeMock).toHaveBeenCalled();
 
     // не работает  возвращает пустую строку
 
-    // expect(inputEmail.props().value).toEqual(1);
+    expect(handleChangeMock).toHaveBeenCalled();
+    expect(wrapper.state().email).toEqual('1');
+    expect(inputEmail.props().value).toEqual(1);
   });
 });

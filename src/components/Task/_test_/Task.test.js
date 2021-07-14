@@ -15,7 +15,6 @@ describe('Task Components Utin Test  ', () => {
   let wrapper;
   it('Task initial state  ', () => {
     wrapper = shallow(<Task item={item} />);
-    console.log(wrapper.debug());
     const id = wrapper.find('#id');
     const name = wrapper.find('#name');
     const date = wrapper.find('#date');

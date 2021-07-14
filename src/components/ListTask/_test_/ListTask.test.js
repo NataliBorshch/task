@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { shallow, mount } from 'enzyme';
 import { ListTask } from '../ListTask';
-import { Task } from '../../Task';
+import Task from '../../Task';
 import { Provider } from 'react-redux';
 
 const props = {
@@ -31,8 +31,13 @@ const props = {
 describe('ListTask Components Utin Test  ', () => {
   let wrapper;
   it('ListTask initial state  ', () => {
-    wrapper = mount(<ListTask {...props} />);
+    wrapper = mount(
+      <Provider store={props}>
+        <ListTask tasks={props.tasks} />
+      </Provider>,
+    );
     const tr = wrapper.find(Task);
+    console.log(tr.debug());
     expect(tr.length).toEqual(2);
   });
   it('ListTask was sortUp ', () => {
@@ -42,9 +47,9 @@ describe('ListTask Components Utin Test  ', () => {
       sortByUp: sortMock,
     };
     wrapper = mount(<ListTask {...newProps} />);
-    const btnSort = wrapper.find('.sort_up');
+    const btnSort = wrapper.find('.sort_up').first();
     btnSort.simulate('click');
     wrapper.update();
-    expect(sortMock).toHaveBeenCalled();
+    expect(sortMock).toHaveBeenCalledWith('id');
   });
 });
