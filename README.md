@@ -4,7 +4,8 @@
 
 ### Getting Started applications npm start [(http://localhost:3000)]
 
-User want to have a system that allows to create tasks and proceed with them
+<font color='blue'>User want to have a system that allows to create tasks and
+proceed with them</font>
 
 **1 Introduce a task system**
 
