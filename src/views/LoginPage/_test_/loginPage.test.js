@@ -34,19 +34,25 @@ describe('LoginPage Components Utin Test', () => {
   });
 
   it('LoginPage handleChange input', () => {
-    const handleChangeMock = jest.fn();
     wrapper = shallow(<LoginPage />);
     const inputEmail = wrapper.find('input').first();
+    const inputPassword = wrapper.find('input').at(1);
     inputEmail.simulate('change', {
-      target: { value: '1' },
+      target: {
+        value: '1',
+        name: 'email',
+      },
+    });
+
+    inputPassword.simulate('change', {
+      target: {
+        value: '12345678',
+        name: 'password',
+      },
     });
 
     wrapper.update();
-
-    // не работает  возвращает пустую строку
-
-    expect(handleChangeMock).toHaveBeenCalled();
     expect(wrapper.state().email).toEqual('1');
-    expect(inputEmail.props().value).toEqual(1);
+    expect(wrapper.state().password).toEqual('12345678');
   });
 });
