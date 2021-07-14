@@ -77,6 +77,7 @@ class FormUpdate extends Component {
           inputProps={{ 'aria-label': 'Checkbox A' }}
           onClick={this.handleInput}
           checked={priority}
+          id="checkbox"
         />
 
         <Select
