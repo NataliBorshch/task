@@ -1,9 +1,8 @@
 # Getting Started server JSON npm run serves [http://localhost:5050]
 # Getting Started applications npm start [http://localhost:3000]
 
-TPlanning system
-
-As a user I want to have a system that allows to create tasks and proceed with them
+Planning system
+ User  want to have a system that allows to create tasks and proceed with them
  
 1 Introduce a task system 
   1.1 Task can be created
