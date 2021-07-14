@@ -79,7 +79,7 @@ class ListTask extends Component {
             <tbody>
               {tasks.length > 0 &&
                 tasks.map(item => (
-                  <tr key={item.id} className="task">
+                  <tr key={item.id}>
                     <Task item={item} />
                   </tr>
                 ))}

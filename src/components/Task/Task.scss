@@ -1,18 +1,23 @@
 .task {
   display: flex;
-  background: chocolate;
+  background: rgb(19, 165, 141);
 }
-th{
+th {
   align-items: center;
-  input{
+  input {
     display: inline-block;
   }
 }
 
-.status_option{
+.status_option {
   background: cornflowerblue;
 }
 
-.rejected{
+.rejected {
   text-decoration: line-through;
+}
+
+.css-e56m7-control {
+  width: 100%;
+  background-color: inherit;
 }

@@ -39,6 +39,7 @@ const updateTask = (id, data) => dispatch => {
   axios
     .put(`/task/${id}`, data)
     .then(({ data }) => {
+      console.log(data);
       return dispatch(actions.updateTaskSuccess(data));
     })
     .catch(error => dispatch(actions.updateTaskError(error.message)));

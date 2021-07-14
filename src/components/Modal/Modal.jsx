@@ -6,10 +6,16 @@ import './Modal.scss';
 const modalRoot = document.getElementById('modal-root');
 
 class Modal extends Component {
+  componentDidMount() {
+    window.addEventListener('keydown', this.handleModalKeyDown);
+  }
+
+  componentWillMount() {
+    window.removeEventListener('keydown', this.handleModalKeyDown);
+  }
+
   handleModalOverlay = event => {
-    // console.dir(event.target);
-    // console.dir(event.currentTarget);
-    if (event.target === event.currentTarget) {
+    if (event.target.className === event.currentTarget.className) {
       this.props.onClose();
     }
   };
@@ -19,14 +25,6 @@ class Modal extends Component {
       this.props.onClose();
     }
   };
-
-  componentDidMount() {
-    window.addEventListener('keydown', this.handleModalKeyDown);
-  }
-
-  componentWillMount() {
-    window.removeEventListener('keydown', this.handleModalKeyDown);
-  }
 
   render() {
     return createPortal(

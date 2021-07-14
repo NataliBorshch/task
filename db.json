@@ -1,28 +1,12 @@
 {
   "task": [
     {
-      "name": "Natali",
-      "description": "1222",
+      "name": "redux1",
+      "priority": true,
+      "status": "ready",
+      "description": "correct1",
       "date_created": "12:07:2021 10:33:22",
-      "status": "todo",
-      "priority": false,
-      "id": 1
-    },
-    {
-      "name": "Natali",
-      "description": "fhfghf",
-      "date_created": "12:07:2021 10:33:22",
-      "status": "todo",
-      "priority": false,
       "id": 3
-    },
-    {
-      "name": "fhfgh",
-      "description": "hf",
-      "date_created": "12:07:2021 10:42:39",
-      "status": "todo",
-      "priority": false,
-      "id": 4
     }
   ],
   "user": []

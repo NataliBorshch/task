@@ -17,51 +17,46 @@ const options = [
 
 class FormUpdate extends Component {
   state = {
-    task: {},
+    name: '',
+    priority: false,
+    status: '',
+    description: '',
   };
 
-  handleChange = selectedOption => {
-    console.log(selectedOption.value);
-    this.setState(prev => ({
-      task: { ...prev, status: selectedOption.value },
-    }));
+  componentDidMount() {
+    this.setState({ ...this.props.task });
+  }
+
+  handleChangeSelect = event => {
+    this.setState({ status: event.value });
   };
 
   handleInput = evt => {
     const value =
       evt.target.type === 'checkbox' ? evt.target.checked : evt.target.value;
     const name = evt.target.name;
-    this.setState(prev => ({ task: { ...prev, [name]: value } }));
+    this.setState({ [name]: value });
+    console.log(this.state);
   };
 
-  componentDidMount() {
-    this.setState({ task: { ...this.props.task } });
-  }
+  handleSubmit = event => {
+    event.preventDefault();
+    this.props.updateTask(this.state.id, { ...this.state });
+    this.reset();
+  };
 
-  // const updateTask = useCallback(
-  //   data => {
-  //     dispatch(operations.updateTask(item.id, data));
-  //   },
-  //   [dispatch, item.id],
-  // );
+  reset = () => {
+    this.setState({ name: '', priority: false, status: '', description: '' });
+  };
 
-  // const handleSubmit = useCallback(
-  //   evt => {
-  //     evt.preventDefault();
-  //     updateTask({ ...task, date_created: new Date() });
-  //   },
-  //   [task, updateTask],
-  // );
   render() {
-    const { task } = this.state;
-    console.log(task);
-
+    const { name, description, status, priority } = this.state;
     return (
-      <form className="form_update">
+      <form className="form_update" onSubmit={this.handleSubmit}>
         <label className="form_label">
           Name
           <input
-            value={task.name}
+            value={name}
             name="name"
             onChange={this.handleInput}
             className="form_input"
@@ -70,28 +65,32 @@ class FormUpdate extends Component {
         <label className="form_label">
           Descriptions
           <input
-            value={task.description}
+            value={description}
             name="description"
             onChange={this.handleInput}
             className="form_input"
           />
         </label>
         <Checkbox
-          value={this.state.task.priority}
+          value={priority}
           name="priority"
           inputProps={{ 'aria-label': 'Checkbox A' }}
           onClick={this.handleInput}
-          checked={this.state.task.priority}
+          checked={priority}
         />
 
         <Select
-          value={this.state.task.status}
-          onChange={this.handleChange}
+          value={status}
+          onChange={this.handleChangeSelect}
           options={options}
+          defaultValue={status}
           name={options}
+          width="250px"
+          className="css-e56m7-control"
           theme={theme => ({
             ...theme,
             borderRadius: 0,
+            width: '250px',
             colors: {
               ...theme.colors,
               primary25: 'hotpink',
@@ -99,21 +98,19 @@ class FormUpdate extends Component {
             },
           })}
         />
-        <button type="submit" className="form_btn">
+        <button type="button" className="form_btn">
           Save
+        </button>
+        <button className="form_btn" type="button" onClick={this.props.onClose}>
+          Close
         </button>
       </form>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  // tasks: selectors.getVisibleTask(state),
-});
-
 const mapDispatchToProps = dispatch => ({
-  // sortByUp: value => dispatch(actions.SortTaskUp(value)),
-  // sortByDown: value => dispatch(actions.SortTaskDown(value)),
+  updateTask: (id, data) => dispatch(operations.updateTask(id, data)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(FormUpdate);
+export default connect(null, mapDispatchToProps)(FormUpdate);

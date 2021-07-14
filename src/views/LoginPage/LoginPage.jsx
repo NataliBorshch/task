@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import '../RegisterPage.scss';
+import { connect } from 'react-redux';
+import '../RegisterPage/RegisterPage.scss';
+import usersOperations from '../../redux/users/operations-user';
 
 class LoginPage extends Component {
   state = {
@@ -29,6 +31,7 @@ class LoginPage extends Component {
               required
               type="email"
               id="email"
+              name="email"
               onChange={this.handleChange}
             />
           </label>
@@ -52,4 +55,10 @@ class LoginPage extends Component {
   }
 }
 
-export default { LoginPage };
+const mapDispatchToProps = dispatch => ({
+  onSubmit: data => dispatch(usersOperations.logIn(data)),
+});
+
+export default connect(null, mapDispatchToProps)(LoginPage);
+
+export { LoginPage };

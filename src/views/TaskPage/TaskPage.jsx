@@ -2,7 +2,6 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import operations from '../../redux/task/operations';
 import selectors from '../../redux/task/selectors';
-
 import FormCreateTask from '../../components/FormCreateTask/FormCreateTask';
 import ListTasks from '../../components/ListTask';
 import Filter from '../../components/Filter';
@@ -13,7 +12,6 @@ class TaskPage extends Component {
     this.props.getTask();
   }
   render() {
-    console.log(this.props.isLoading);
     return (
       <div className="tasks_page">
         <div>

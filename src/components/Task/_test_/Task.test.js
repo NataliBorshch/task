@@ -35,10 +35,9 @@ describe('Task Components Utin Test  ', () => {
     const props = {
       onDelete: onDeleteMock,
     };
-    wrapper = shallow(<Task {...props} />);
-    const btnDelete = wrapper.find('.delete_task');
-
+    wrapper = shallow(<Task {...props} item={item} />);
+    const btnDelete = wrapper.find('#delete_task');
     btnDelete.simulate('click');
-    expect(onDeleteMock).toHaveBeenCalled();
+    expect(onDeleteMock).toHaveBeenCalledWith(item.id);
   });
 });

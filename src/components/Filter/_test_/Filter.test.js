@@ -16,47 +16,27 @@ describe('Filter Components Utin Test  ', () => {
   it('Filter should mount ', () => {
     wrapper = shallow(<Filter />);
     const div = wrapper.find('.filter_search');
-    const input = wrapper.find('.form_input');
+    const filter = wrapper.find('.form_input');
     expect(div.length).toBe(1);
-    expect(input.text()).toEqual('');
-  });
-
-  it('Filter mount', () => {
-    wrapper = shallow(<Filter {...props} />);
-    const div = wrapper.find('.filter_search');
-    const input = wrapper.find('.form_input');
-    expect(div.length).toBe(1);
-    expect(input.text()).toEqual('');
+    expect(filter.text()).toEqual('');
   });
 
   it('Filter was change ', () => {
+    const getFilterMock = jest.fn();
     const newProps = {
       ...props,
       task: {
         ...props.task,
-        items: [
-          {
-            name: 'Task1',
-            description: '1222',
-            date_created: '12:07:2021 10:33:22',
-            status: 'todo',
-            priority: false,
-            id: 1,
-          },
-          {
-            name: 'Test',
-            description: 'fhfghf',
-            date_created: '12:07:2021 10:33:22',
-            status: 'todo',
-            priority: false,
-            id: 3,
-          },
-        ],
-        filter: 'test',
+        filter: '1',
       },
+      getFilter: getFilterMock,
     };
-    wrapper.shallow(<Filter {...newProps} />);
-    const input = wrapper.find('.form_input');
-    console.log(input.debug());
+    wrapper = shallow(<Filter {...newProps} />);
+    const filter = wrapper.find('.form_input');
+    filter.simulate('change');
+    wrapper.update();
+    console.log(wrapper.debug());
+    expect(filter.text()).toEqual('1');
+    expect(getFilterMock).toHaveBeenCalledWith(1);
   });
 });

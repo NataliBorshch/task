@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './RegisterPage.scss';
+import { connect } from 'react-redux';
+import userOperations from '../../redux/users/operations-user';
 
 class RegisterPage extends Component {
   state = {
@@ -15,7 +17,7 @@ class RegisterPage extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    // this.props.onSubmit({ ...this.state });
+    this.props.onSubmit({ ...this.state });
   };
   render() {
     return (
@@ -58,4 +60,10 @@ class RegisterPage extends Component {
   }
 }
 
-export default RegisterPage;
+const mapDispatchToProps = dispatch => ({
+  onSubmit: data => dispatch(userOperations.register(data)),
+});
+
+export default connect(null, mapDispatchToProps)(RegisterPage);
+
+export { RegisterPage };
