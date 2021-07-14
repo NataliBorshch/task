@@ -2,6 +2,8 @@
 # Getting Started applications npm start [http://localhost:3000]
 
 Planning system
+
+
  User  want to have a system that allows to create tasks and proceed with them
  
 1 Introduce a task system 
