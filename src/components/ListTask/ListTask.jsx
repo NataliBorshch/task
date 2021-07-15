@@ -23,7 +23,11 @@ class ListTask extends Component {
                   >
                     +
                   </button>
-                  <button type="button" onClick={() => sortByDown('id')}>
+                  <button
+                    type="button"
+                    className="sort_down"
+                    onClick={() => sortByDown('id')}
+                  >
                     -
                   </button>
                 </th>
@@ -101,3 +105,5 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListTask);
+
+export { ListTask };
