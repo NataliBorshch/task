@@ -30,7 +30,6 @@ class Task extends Component {
   render() {
     const { item, onDelete } = this.props;
     const { showModal } = this.state;
-    console.log(showModal);
     return (
       <>
         <th id="id">{item.id}</th>
@@ -54,7 +53,7 @@ class Task extends Component {
           <button>
             <Icon icon="minus" size={20} color="red" />
           </button>
-          <button onClick={this.openModal} type="button">
+          <button id="edit" onClick={this.openModal} type="button">
             <Icon icon="edit" size={20} color="blue" />
             {showModal && (
               <Modal onClose={this.onCloseModal}>

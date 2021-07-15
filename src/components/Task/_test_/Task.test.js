@@ -29,6 +29,11 @@ describe('Task Components Utin Test  ', () => {
     expect(priority.prop('checked')).toEqual(item.priority);
     expect(status.text()).toEqual(item.status);
   });
+
+  it('Task Modal initialState', () => {
+    wrapper = shallow(<Task item={item} />);
+    expect(wrapper.state().showModal).toEqual(false);
+  });
   it('Task delete component ', () => {
     const onDeleteMock = jest.fn();
     const props = {
@@ -38,5 +43,13 @@ describe('Task Components Utin Test  ', () => {
     const btnDelete = wrapper.find('#delete_task');
     btnDelete.simulate('click');
     expect(onDeleteMock).toHaveBeenCalledWith(item.id);
+  });
+  it('Task btn Edit  open Modal', () => {
+    wrapper = shallow(<Task item={item} />);
+    const btnEdit = wrapper.find('#edit');
+    btnEdit.simulate('click');
+    wrapper.update();
+
+    expect(wrapper.state('showModal')).toEqual(true);
   });
 });
