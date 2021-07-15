@@ -23,8 +23,9 @@ describe('TaskPage Components Utin Test  ', () => {
     };
     wrapper = shallow(<TaskPage {...newProps} />);
     // console.log(wrapper.debug());
-    // const p = wrapper.find('#loading');
-    //   не работает
+    const p = wrapper.find('#loading');
+    // console.log(p.debug());
+    // не работает
     // expect(p.text()).toEqual('Loading...');
   });
   it('TaskPage mount ListTask ', () => {

@@ -33,10 +33,18 @@ class ListTask extends Component {
                 </th>
                 <th className="table_header_item">
                   Name
-                  <button type="button" onClick={() => sortByUp('name')}>
+                  <button
+                    type="button"
+                    className="sort_up"
+                    onClick={() => sortByUp('name')}
+                  >
                     +
                   </button>
-                  <button type="button" onClick={() => sortByDown('name')}>
+                  <button
+                    type="button"
+                    className="sort_down"
+                    onClick={() => sortByDown('name')}
+                  >
                     -
                   </button>
                 </th>
@@ -44,12 +52,14 @@ class ListTask extends Component {
                   Date
                   <button
                     type="button"
+                    className="sort_up"
                     onClick={() => sortByUp('date_created')}
                   >
                     +
                   </button>
                   <button
                     type="button"
+                    className="sort_down"
                     onClick={() => sortByDown('date_created')}
                   >
                     -
@@ -57,11 +67,16 @@ class ListTask extends Component {
                 </th>
                 <th className="table_header_item">
                   Description
-                  <button type="button" onClick={() => sortByUp('description')}>
+                  <button
+                    type="button"
+                    className="sort_up"
+                    onClick={() => sortByUp('description')}
+                  >
                     +
                   </button>
                   <button
                     type="button"
+                    className="sort_down"
                     onClick={() => sortByDown('description')}
                   >
                     -
@@ -69,10 +84,18 @@ class ListTask extends Component {
                 </th>
                 <th className="table_header_item">
                   Status
-                  <button type="button" onClick={() => sortByUp('status')}>
+                  <button
+                    type="button"
+                    className="sort_up"
+                    onClick={() => sortByUp('status')}
+                  >
                     +
                   </button>
-                  <button type="button" onClick={() => sortByDown('status')}>
+                  <button
+                    type="button"
+                    className="sort_down"
+                    onClick={() => sortByDown('status')}
+                  >
                     -
                   </button>
                 </th>

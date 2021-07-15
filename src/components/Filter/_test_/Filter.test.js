@@ -23,19 +23,14 @@ describe('Filter Components Utin Test  ', () => {
 
   it('Filter was change ', () => {
     const getFilterMock = jest.fn();
-    const newProps = {
-      ...props,
-      task: {
-        ...props.task,
-        filter: '1',
-      },
-      getFilter: getFilterMock,
-    };
-    wrapper = shallow(<Filter {...newProps} />);
+    const filterValue = '1';
+    wrapper = shallow(
+      <Filter getFilter={getFilterMock} filter={filterValue} />,
+    );
     const filter = wrapper.find('.form_input');
     filter.simulate('change');
     wrapper.update();
-    // console.log(wrapper.debug());
+    expect(filter.props().value).toEqual('1');
     expect(getFilterMock).toHaveBeenCalled();
   });
 });

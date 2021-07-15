@@ -42,7 +42,7 @@ describe('ListTask Components Utin Test  ', () => {
     const tr = wrapper.find(Task);
     expect(tr.length).toBe(0);
   });
-  it('ListTask was sortUp ', () => {
+  it('ListTask was sortUp id  ', () => {
     const sortMock = jest.fn();
     wrapper = shallow(
       <ListTask sortByUp={sortMock} tasks={props.task.items} />,
@@ -53,7 +53,7 @@ describe('ListTask Components Utin Test  ', () => {
     expect(sortMock).toHaveBeenCalledWith('id');
   });
 
-  it('ListTask was sortDown ', () => {
+  it('ListTask was sortDown  id ', () => {
     const sortMock = jest.fn();
     wrapper = shallow(
       <ListTask sortByDown={sortMock} tasks={props.task.items} />,
@@ -62,5 +62,90 @@ describe('ListTask Components Utin Test  ', () => {
     btnSort.simulate('click');
     wrapper.update();
     expect(sortMock).toHaveBeenCalledWith('id');
+  });
+  it('ListTask was sortUp name ', () => {
+    const sortMock = jest.fn();
+    wrapper = shallow(
+      <ListTask sortByUp={sortMock} tasks={props.task.items} />,
+    );
+    const btnSort = wrapper.find('.sort_up').at(1);
+    btnSort.simulate('click');
+    wrapper.update();
+    expect(sortMock).toHaveBeenCalledWith('name');
+  });
+
+  it('ListTask was sortDown  name ', () => {
+    const sortMock = jest.fn();
+    wrapper = shallow(
+      <ListTask sortByDown={sortMock} tasks={props.task.items} />,
+    );
+    const btnSort = wrapper.find('.sort_down').at(1);
+    btnSort.simulate('click');
+    wrapper.update();
+    expect(sortMock).toHaveBeenCalledWith('name');
+  });
+
+  it('ListTask was sortUp Date ', () => {
+    const sortMock = jest.fn();
+    wrapper = shallow(
+      <ListTask sortByUp={sortMock} tasks={props.task.items} />,
+    );
+    const btnSort = wrapper.find('.sort_up').at(2);
+    btnSort.simulate('click');
+    wrapper.update();
+    expect(sortMock).toHaveBeenCalledWith('date_created');
+  });
+
+  it('ListTask was sortDown  Date', () => {
+    const sortMock = jest.fn();
+    wrapper = shallow(
+      <ListTask sortByDown={sortMock} tasks={props.task.items} />,
+    );
+    const btnSort = wrapper.find('.sort_down').at(2);
+    btnSort.simulate('click');
+    wrapper.update();
+    expect(sortMock).toHaveBeenCalledWith('date_created');
+  });
+  it('ListTask was sortUp description ', () => {
+    const sortMock = jest.fn();
+    wrapper = shallow(
+      <ListTask sortByUp={sortMock} tasks={props.task.items} />,
+    );
+    const btnSort = wrapper.find('.sort_up').at(3);
+    btnSort.simulate('click');
+    wrapper.update();
+    expect(sortMock).toHaveBeenCalledWith('description');
+  });
+
+  it('ListTask was sortDown  description', () => {
+    const sortMock = jest.fn();
+    wrapper = shallow(
+      <ListTask sortByDown={sortMock} tasks={props.task.items} />,
+    );
+    const btnSort = wrapper.find('.sort_down').at(3);
+    btnSort.simulate('click');
+    wrapper.update();
+    expect(sortMock).toHaveBeenCalledWith('description');
+  });
+  it('ListTask was sortUp status ', () => {
+    const sortMock = jest.fn();
+    wrapper = shallow(
+      <ListTask sortByUp={sortMock} tasks={props.task.items} />,
+    );
+    const btnSort = wrapper.find('.sort_up').at(4);
+    btnSort.simulate('click');
+    wrapper.update();
+    expect(sortMock).toHaveBeenCalledWith('status');
+  });
+
+  it('ListTask was sortDown  status', () => {
+    const sortMock = jest.fn();
+    wrapper = shallow(
+      <ListTask sortByDown={sortMock} tasks={props.task.items} />,
+    );
+    const btnSort = wrapper.find('.sort_down').at(4);
+    btnSort.simulate('click');
+    wrapper.update();
+    expect(sortMock).toHaveBeenCalledWith('status');
   });
 });
