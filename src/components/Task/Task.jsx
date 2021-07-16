@@ -7,6 +7,21 @@ import FormUpdate from '../FormUpdate';
 import { connect } from 'react-redux';
 import operations from '../../redux/task/operations';
 
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import { withStyles } from '@material-ui/core/styles';
+import { green } from '@material-ui/core/colors';
+
+const GreenCheckbox = withStyles({
+  root: {
+    color: green[400],
+    '&$checked': {
+      color: green[600],
+    },
+  },
+  checked: {},
+})(props => <Checkbox color="default" {...props} />);
+
 class Task extends Component {
   state = {
     showModal: false,
@@ -34,20 +49,19 @@ class Task extends Component {
       <>
         <th id="id">{item.id}</th>
         <th id="name">{item.name}</th>
-        <th id="date">{item.date_created}</th>
+        <th id="date">{item.createdAt}</th>
         <th id="description">{item.description}</th>
         <th>
-          <input
-            id="priority"
-            type="checkbox"
-            checked={item.priority}
-            // onChange={this.onTogglePriority}
+          <FormControlLabel
+            control={<GreenCheckbox checked={item.priority} />}
+            label="Priority Task"
           />
         </th>
         <th>
-          <select className="status_option" value={item.status}>
+          {/* <select className="status_option" value={item.status}>
             <option id="status">{item.status}</option>
-          </select>
+          </select> */}
+          {item.status}
         </th>
         <th>
           <button>

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './RegisterPage.scss';
 import { connect } from 'react-redux';
 import userOperations from '../../redux/users/operations-user';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 class RegisterPage extends Component {
   state = {
@@ -25,36 +27,37 @@ class RegisterPage extends Component {
       <div className="register_page">
         <h1 className="page_name">Registration </h1>
         <form className="register_form" onSubmit={this.handleSubmit}>
-          <label className="form_label">
-            Name
-            <input
-              className="form_input"
-              required
-              name="name"
-              type="text"
-              onChange={this.handleChange}
-            />
-          </label>
-          <label className="form_label">
-            Email
-            <input
-              className="form_input"
-              required
-              name="email"
-              type="email"
-              onChange={this.handleChange}
-            />
-          </label>
-          <label className="form_label">
-            Password
-            <input
-              className="form_input"
-              required
-              name="password"
-              type="text"
-              onChange={this.handleChange}
-            />
-          </label>
+          <TextField
+            required
+            name="name"
+            type="text"
+            label="name"
+            style={{
+              width: '100%',
+            }}
+            onChange={this.handleChange}
+          />
+          <TextField
+            required
+            name="email"
+            type="email"
+            label="email"
+            style={{
+              width: '100%',
+            }}
+            onChange={this.handleChange}
+          />
+          <TextField
+            required
+            name="password"
+            type="password"
+            label="password"
+            style={{
+              width: '100%',
+            }}
+            onChange={this.handleChange}
+          />
+          {/* <Button>Sign In </Button> */}
           <button type="submit" className="form_btn">
             Sing IN
           </button>
