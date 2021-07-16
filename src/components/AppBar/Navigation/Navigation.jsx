@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+//routers selectors
 import routers from '../../../routers/routers';
+import userSelectors from '../../../redux/users/select-use';
 
 const Navigation = ({ isAuthenticated }) => {
   return (
@@ -37,4 +39,8 @@ const Navigation = ({ isAuthenticated }) => {
   );
 };
 
-export default Navigation;
+const mapStateToProps = state => ({
+  isAuthenticated: userSelectors.getAuthenticated(state),
+});
+
+export default connect(mapStateToProps)(Navigation);

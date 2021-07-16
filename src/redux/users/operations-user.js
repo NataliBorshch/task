@@ -15,7 +15,7 @@ const token = {
 const register = accountingData => dispatch => {
   dispatch(userActions.registerRequest());
   axios
-    .post('/users/signup', accountingData)
+    .post('/user/register', accountingData)
     .then(({ data }) => {
       token.set(data.token);
       return dispatch(userActions.registerSuccess(data));
@@ -26,7 +26,7 @@ const register = accountingData => dispatch => {
 const logIn = accountingData => dispatch => {
   dispatch(userActions.loginRequest());
   axios
-    .post('/users/login', accountingData)
+    .post('/user/login', accountingData)
     .then(({ data }) => {
       token.set(data.token);
       return dispatch(userActions.loginSuccess(data));
@@ -36,7 +36,7 @@ const logIn = accountingData => dispatch => {
 const logOut = () => dispatch => {
   dispatch(userActions.logoutRequest());
   axios
-    .post('/users/logout')
+    .post('/user/logout')
     .then(() => {
       token.unset();
       return dispatch(userActions.logoutSuccess());
@@ -46,7 +46,7 @@ const logOut = () => dispatch => {
 
 const getCurrentUser = () => (dispatch, getState) => {
   const {
-    auth: { token: persistedToken },
+    users: { token: persistedToken },
   } = getState();
   if (!persistedToken) {
     return;
@@ -55,7 +55,7 @@ const getCurrentUser = () => (dispatch, getState) => {
   dispatch(userActions.getCurrentUserRequest());
 
   axios
-    .get('/users/current')
+    .get('/user/current')
     .then(({ data }) => dispatch(userActions.getCurrentUserSuccess(data)))
     .catch(error => dispatch(userActions.getCurrentUserError(error.message)));
 };

@@ -1,6 +1,9 @@
+import { connect } from 'react-redux';
 import './UserMenu.scss';
+import userSelectors from '../../../redux/users/select-use';
+import userOperation from '../../../redux/users/operations-user';
 
-const UserMenu = ({ name }) => {
+const UserMenu = ({ name, onLogout }) => {
   return (
     <div id="usermenu">
       <img
@@ -12,16 +15,24 @@ const UserMenu = ({ name }) => {
       <p className="name" id="name_user">
         Wellcome {name ? name : 'Guest'}
       </p>
-      <button>
+      <button onClick={onLogout}>
         Log off
-        {/* <img
+        <img
           alt="logout"
           src="https://ik.imagekit.io/s2fpg15d4rx/imgbin_web-hosting-icon-logout-icon-arrow-icon-png_8SQmsSuCZ.png"
           width="50px"
-        /> */}
+        />
       </button>
     </div>
   );
 };
 
-export default UserMenu;
+const mapStateToProps = state => ({
+  name: userSelectors.getUserName(state),
+});
+
+const mapDispatchToProps = dispatch => ({
+  onLogout: () => dispatch(userOperation.logOut()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserMenu);
