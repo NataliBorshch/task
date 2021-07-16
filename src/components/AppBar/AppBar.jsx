@@ -5,7 +5,9 @@ import AuthNav from './AuthNav';
 import Timer from '../../components/Timer';
 import UserMenu from '../AppBar/UserMenu/UserMenu';
 import selectors from '../../redux/users/select-use';
-const AppBar = ({ isAuthenticated = true }) => {
+import { connect } from 'react-redux';
+
+const AppBar = ({ isAuthenticated }) => {
   return (
     <header>
       <Navigation />
@@ -15,8 +17,8 @@ const AppBar = ({ isAuthenticated = true }) => {
   );
 };
 
-// const mapStateToProps = state => ({
-//   isAuthenticated: selectors.getAuthenticated(state),
-// });
+const mapStateToProps = state => ({
+  isAuthenticated: selectors.getAuthenticated(state),
+});
 
-export default AppBar;
+export default connect(mapStateToProps)(AppBar);

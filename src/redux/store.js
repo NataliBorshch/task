@@ -33,7 +33,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   task: taskReducer,
   users: usersReducer,
-  // users: persistReducer(persistConfig, usersReducer),
+  users: persistReducer(persistConfig, usersReducer),
 });
 
 const store = configureStore({
@@ -42,8 +42,6 @@ const store = configureStore({
   devTools: process.env.NODE_ENV === 'development',
 });
 
-// const persistor = persistStore(store);
+const persistor = persistStore(store);
 
-// export default {store , persistor}
-
-export default store;
+export default { store, persistor };

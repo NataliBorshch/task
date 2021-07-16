@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import routers from '../../../routers/routers';
 
-const Navigation = ({ isAuthenticated = true }) => {
+const Navigation = ({ isAuthenticated }) => {
   return (
     <nav id="nav">
       <ul>
