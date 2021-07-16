@@ -3,7 +3,9 @@ body {
   font-family: 'Satisfy', cursive 'Uchen', serif 'Yellowtail', cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url(https://ik.imagekit.io/s2fpg15d4rx/background2_NnlHqn1vS.jpg);
+  min-height: 100%;
+  // height: 100%;
+  background: linear-gradient(45deg, #37ecba, #72afd3);
   background-repeat: no-repeat;
   background-size: cover;
 }

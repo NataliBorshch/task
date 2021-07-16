@@ -32,7 +32,6 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   task: taskReducer,
-  users: usersReducer,
   users: persistReducer(persistConfig, usersReducer),
 });
 

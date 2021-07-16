@@ -1,7 +1,7 @@
 import axios from 'axios';
 import userActions from './action-user';
 
-axios.defaults.baseURL = 'http://localhost:5050';
+axios.defaults.baseURL = 'http://localhost:5050/api';
 
 const token = {
   set(token) {
@@ -17,6 +17,7 @@ const register = accountingData => dispatch => {
   axios
     .post('/user/register', accountingData)
     .then(({ data }) => {
+      console.log(data);
       token.set(data.token);
       return dispatch(userActions.registerSuccess(data));
     })

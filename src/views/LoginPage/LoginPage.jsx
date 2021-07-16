@@ -21,7 +21,7 @@ class LoginPage extends Component {
   render() {
     return (
       <div className="register_page">
-        <h1 className="page_name">Log In </h1>
+        <h1 className="page_name">Log Inbnvbnvnv </h1>
         <form className="register_form" onSubmit={this.handleSubmit}>
           <label className="form_label">
             Email
@@ -41,6 +41,7 @@ class LoginPage extends Component {
               className="form_input"
               value={this.state.password}
               required
+              name="password"
               type="text"
               id="password"
               onChange={this.handleChange}

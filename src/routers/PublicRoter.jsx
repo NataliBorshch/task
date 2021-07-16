@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import selectors from '../redux/task/selectors';
+import selectors from '../redux/users/select-use';
 
 const PublicRoute = ({
   component: Component,
