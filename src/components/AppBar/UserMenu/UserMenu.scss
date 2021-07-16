@@ -1,3 +1,22 @@
-.user_menu {
+#user_menu {
   display: flex;
+}
+
+.btn_logout {
+  outline: none;
+  border: none;
+  background: inherit;
+  border-radius: 5px;
+}
+.btn_logout:hover,
+.btn_logout:focus {
+  box-shadow: 0 0 10px rgba(10, 97, 71, 0.644);
+}
+
+.name {
+  color: white;
+  font-size: 18px;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0px 10px;
 }
