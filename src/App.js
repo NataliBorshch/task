@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 // conponents
 import Container from './components/Container';
 import AppBar from './components/AppBar/AppBar';
+import Spinner from './components/Spinner/Spinner';
 //  routers
 import routers from './routers/routers';
 import PrivateRoute from './routers/PrivatRouter';
@@ -38,7 +39,7 @@ class App extends Component {
       <>
         <Container>
           <AppBar />
-          <Suspense fallback={<h1>Loading</h1>}>
+          <Suspense fallback={<Spinner />}>
             <Switch>
               <Route path={routers.main} exact component={MainPage} />
               <PrivateRoute
@@ -73,8 +74,8 @@ class App extends Component {
   }
 }
 
-const mapDispatchToProps = {
-  getCurrentUser: usersOperations.getCurrentUser,
-};
+const mapDispatchToProps = dispatch => ({
+  getCurrentUser: () => dispatch(usersOperations.getCurrentUser()),
+});
 
 export default connect(null, mapDispatchToProps)(App);

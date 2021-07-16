@@ -6,10 +6,11 @@ import store from './redux/store';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
+import Spinner from './components/Spinner';
 
 ReactDOM.render(
   <Provider store={store.store}>
-    <PersistGate loading={<h>Loading</h>} persistor={store.persistor}>
+    <PersistGate loading={<Spinner />} persistor={store.persistor}>
       <BrowserRouter>
         <App />
       </BrowserRouter>

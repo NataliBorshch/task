@@ -7,12 +7,12 @@ const user = createReducer(initialUserState, {
   [action.registerSuccess]: (_, { payload }) => payload.data,
   [action.loginSuccess]: (_, { payload }) => payload.user,
   [action.logoutSuccess]: () => initialUserState,
-  [action.getCurrentUserSuccess]: (_, { payload }) => payload,
+  [action.getCurrentUserSuccess]: (_, { payload }) => payload.data,
 });
 
 const token = createReducer(null, {
   [action.registerSuccess]: (_, { payload }) => payload.data.token,
-  [action.loginSuccess]: (_, { payload }) => payload.token,
+  [action.loginSuccess]: (_, { payload }) => payload.data.token,
   [action.logoutSuccess]: () => null,
 });
 const error = createReducer(null, {
