@@ -17,6 +17,7 @@ class RegisterPage extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    console.log(this.state);
     this.props.onSubmit({ ...this.state });
   };
   render() {
@@ -39,6 +40,7 @@ class RegisterPage extends Component {
             <input
               className="form_input"
               required
+              name="email"
               type="email"
               onChange={this.handleChange}
             />
