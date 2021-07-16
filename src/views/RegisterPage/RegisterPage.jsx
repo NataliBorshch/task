@@ -68,4 +68,4 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(null, mapDispatchToProps)(RegisterPage);
 
-export { RegisterPage };
+// export { RegisterPage };

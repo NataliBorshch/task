@@ -8,9 +8,12 @@ import AppBar from './components/AppBar/AppBar';
 import routers from './routers/routers';
 import PrivateRoute from './routers/PrivatRouter';
 import PublicRoute from './routers/PublicRoter';
+
 // redux
 import usersOperations from './redux/users/operations-user';
+
 // lazy
+// import LoginPage from './views/LoginPage';
 
 const MainPage = lazy(() =>
   import('./views/MainPage' /* webpackChunkName: "main-page" */),
@@ -21,6 +24,7 @@ const TasksPage = lazy(() =>
 const LoginPage = lazy(() =>
   import('./views/LoginPage' /* webpackChunkName: "login-page" */),
 );
+
 const RegisterPage = lazy(() =>
   import('./views/RegisterPage' /* webpackChunkName: "register-page" */),
 );
@@ -43,19 +47,23 @@ class App extends Component {
                 component={TasksPage}
                 redirectTo={routers.logins}
               />
+
               <PublicRoute
+                exact
+                path={routers.register}
+                component={RegisterPage}
+                redirectTo={routers.tasks}
+                restricted
+              />
+
+              <PublicRoute
+                exact
                 path={routers.logins}
                 component={LoginPage}
                 redirectTo={routers.tasks}
                 restricted
               />
 
-              <PublicRoute
-                path={routers.register}
-                redirectTo={routers.tasks}
-                restricted
-                component={RegisterPage}
-              />
               <Redirect path={routers.main} />
             </Switch>
           </Suspense>

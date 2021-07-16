@@ -21,7 +21,7 @@ class LoginPage extends Component {
   render() {
     return (
       <div className="register_page">
-        <h1 className="page_name">Log Inbnvbnvnv </h1>
+        <h1 className="page_name">Log In </h1>
         <form className="register_form" onSubmit={this.handleSubmit}>
           <label className="form_label">
             Email
@@ -62,4 +62,4 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(null, mapDispatchToProps)(LoginPage);
 
-export { LoginPage };
+// export { LoginPage };
