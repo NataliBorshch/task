@@ -17,8 +17,7 @@ const register = accountingData => dispatch => {
   axios
     .post('/user/register', accountingData)
     .then(({ data }) => {
-      console.log(data);
-      token.set(data.token);
+      token.set(data.data.token);
       return dispatch(userActions.registerSuccess(data));
     })
     .catch(error => dispatch(userActions.registerError(error.message)));
@@ -29,7 +28,7 @@ const logIn = accountingData => dispatch => {
   axios
     .post('/user/login', accountingData)
     .then(({ data }) => {
-      token.set(data.token);
+      token.set(data.data.token);
       return dispatch(userActions.loginSuccess(data));
     })
     .catch(error => dispatch(userActions.logoutError(error.message)));

@@ -11,9 +11,9 @@ class FormCreateTask extends Component {
   state = {
     name: '',
     description: '',
-    date_created: moment().format('DD:MM:YYYY hh:mm:ss'),
-    status: 'todo',
-    priority: false,
+    // date_target: moment().format('DD:MM:YYYY hh:mm:ss'),
+    // status: 'todo',
+    // priority: false,
   };
 
   handleInput = evt => {
@@ -23,6 +23,7 @@ class FormCreateTask extends Component {
 
   handleSubmit = evt => {
     evt.preventDefault();
+    console.log(this.state);
     this.props.addTask({ ...this.state });
     this.reset();
   };

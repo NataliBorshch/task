@@ -1,7 +1,7 @@
 import axios from 'axios';
 import actions from './actions';
 
-axios.defaults.baseURL = 'http://localhost:5050';
+axios.defaults.baseURL = 'http://localhost:5050/api';
 
 const getTask = () => dispatch => {
   dispatch(actions.getTaskRequest());

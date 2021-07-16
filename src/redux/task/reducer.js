@@ -21,7 +21,10 @@ const sortByDown = (state, value) => {
 
 const items = createReducer([], {
   [actions.getTaskSuccess]: (_, { payload }) => [...payload],
-  [actions.createTaskSuccess]: (state, { payload }) => [...state, payload],
+  [actions.createTaskSuccess]: (state, { payload }) => [
+    ...state,
+    payload.data.task,
+  ],
   [actions.removeTaskSuccess]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
   [actions.updateTaskSuccess]: (state, { payload }) =>
