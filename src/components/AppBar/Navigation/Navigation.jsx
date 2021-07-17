@@ -9,7 +9,7 @@ const Navigation = ({ isAuthenticated }) => {
   return (
     <nav id="nav">
       <ul>
-        <li>
+        {/* <li>
           <NavLink
             exact
             to={routers.main}
@@ -19,7 +19,7 @@ const Navigation = ({ isAuthenticated }) => {
           >
             Main
           </NavLink>
-        </li>
+        </li> */}
 
         {isAuthenticated && (
           <li>

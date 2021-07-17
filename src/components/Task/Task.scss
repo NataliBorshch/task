@@ -1,12 +1,17 @@
 .task {
   display: flex;
-  background: rgb(19, 165, 141);
+  background: rgb(89, 109, 146);
 }
 th {
   align-items: center;
   input {
     display: inline-block;
   }
+}
+
+.task_item {
+  background: rgba(117, 146, 228, 0.5);
+  border-radius: 0px;
 }
 
 .status_option {

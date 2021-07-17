@@ -4,10 +4,14 @@ import Task from '../Task/index';
 import { connect } from 'react-redux';
 import actions from '../../redux/task/actions';
 import { Component } from 'react';
+import Fab from '@material-ui/core/Fab';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 
 class ListTask extends Component {
   render() {
     const { tasks, sortByUp, sortByDown } = this.props;
+
     return (
       tasks.length !== 0 && (
         <div className="section_tasks">
@@ -16,88 +20,98 @@ class ListTask extends Component {
               <tr>
                 <th className="table_header_item">
                   Number
-                  <button
-                    type="button"
-                    className="sort_up"
-                    onClick={() => sortByUp('id')}
-                  >
-                    +
-                  </button>
-                  <button
-                    type="button"
-                    className="sort_down"
-                    onClick={() => sortByDown('id')}
-                  >
-                    -
-                  </button>
+                  <span>
+                    <button
+                      type="button"
+                      onClick={() => sortByUp('id')}
+                      className="sort_up"
+                    >
+                      <ArrowUpwardIcon fontSize="small" />
+                    </button>
+                    <button
+                      type="button"
+                      className="sort_down"
+                      onClick={() => sortByDown('id')}
+                    >
+                      <ArrowDownwardIcon />
+                    </button>
+                  </span>
                 </th>
                 <th className="table_header_item">
                   Name
-                  <button
-                    type="button"
-                    className="sort_up"
-                    onClick={() => sortByUp('name')}
-                  >
-                    +
-                  </button>
-                  <button
-                    type="button"
-                    className="sort_down"
-                    onClick={() => sortByDown('name')}
-                  >
-                    -
-                  </button>
+                  <span>
+                    <button
+                      type="button"
+                      className="sort_up"
+                      onClick={() => sortByUp('name')}
+                    >
+                      <ArrowUpwardIcon fontSize="small" />
+                    </button>
+                    <button
+                      type="button"
+                      className="sort_down"
+                      onClick={() => sortByDown('name')}
+                    >
+                      <ArrowDownwardIcon />
+                    </button>
+                  </span>
                 </th>
                 <th className="table_header_item">
                   Date
-                  <button
-                    type="button"
-                    className="sort_up"
-                    onClick={() => sortByUp('date_created')}
-                  >
-                    +
-                  </button>
-                  <button
-                    type="button"
-                    className="sort_down"
-                    onClick={() => sortByDown('date_created')}
-                  >
-                    -
-                  </button>
+                  <span>
+                    <button
+                      type="button"
+                      className="sort_up"
+                      onClick={() => sortByUp('date_created')}
+                    >
+                      <ArrowUpwardIcon fontSize="small" />
+                    </button>
+                    <button
+                      type="button"
+                      className="sort_down"
+                      onClick={() => sortByDown('date_created')}
+                    >
+                      <ArrowDownwardIcon />
+                    </button>
+                  </span>
                 </th>
                 <th className="table_header_item">
                   Description
-                  <button
-                    type="button"
-                    className="sort_up"
-                    onClick={() => sortByUp('description')}
-                  >
-                    +
-                  </button>
-                  <button
-                    type="button"
-                    className="sort_down"
-                    onClick={() => sortByDown('description')}
-                  >
-                    -
-                  </button>
+                  <span>
+                    <button
+                      type="button"
+                      className="sort_up"
+                      onClick={() => sortByUp('description')}
+                    >
+                      <ArrowUpwardIcon fontSize="small" />
+                    </button>
+                    <button
+                      type="button"
+                      className="sort_down"
+                      onClick={() => sortByDown('description')}
+                    >
+                      <ArrowDownwardIcon />
+                    </button>
+                  </span>
                 </th>
                 <th className="table_header_item">
                   Status
-                  <button
-                    type="button"
-                    className="sort_up"
-                    onClick={() => sortByUp('status')}
-                  >
-                    +
-                  </button>
-                  <button
-                    type="button"
-                    className="sort_down"
-                    onClick={() => sortByDown('status')}
-                  >
-                    -
-                  </button>
+                  <span>
+                    <button
+                      type="button"
+                      className="sort_up"
+                      onClick={() => sortByUp('status')}
+                    >
+                      <ArrowUpwardIcon fontSize="small" />
+                    </button>
+                    <button
+                      type="button"
+                      className="sort_down"
+                      onClick={() => sortByDown('status')}
+                    >
+                      <ArrowDownwardIcon />
+                    </button>
+                  </span>
                 </th>
                 <th className="table_header_item">Priority</th>
                 <th className="table_header_item">Change Task</th>

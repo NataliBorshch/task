@@ -19,9 +19,6 @@ import usersOperations from './redux/users/operations-user';
 const MainPage = lazy(() =>
   import('./views/MainPage' /* webpackChunkName: "main-page" */),
 );
-const TasksPage = lazy(() =>
-  import('../src/views/TaskPage' /* webpackChunkName: "tasks-page" */),
-);
 const LoginPage = lazy(() =>
   import('./views/LoginPage' /* webpackChunkName: "login-page" */),
 );
@@ -41,13 +38,14 @@ class App extends Component {
           <AppBar />
           <Suspense fallback={<Spinner />}>
             <Switch>
-              <Route path={routers.main} exact component={MainPage} />
-              <PrivateRoute
-                path={routers.tasks}
+              {/* <PublicRoute
+                path={routers.main}
                 exact
-                component={TasksPage}
-                redirectTo={routers.logins}
-              />
+                component={MainPage}
+                redirectTo={routers.main}
+                restricted
+              /> */}
+              {/* <Route path="/" component={MainPage}></Route> */}
 
               <PublicRoute
                 exact
@@ -64,8 +62,13 @@ class App extends Component {
                 redirectTo={routers.tasks}
                 restricted
               />
+              <PrivateRoute
+                path={routers.main}
+                component={MainPage}
+                redirectTo={routers.logins}
+              />
 
-              <Redirect path={routers.main} />
+              <Redirect path={routers.login} />
             </Switch>
           </Suspense>
         </Container>

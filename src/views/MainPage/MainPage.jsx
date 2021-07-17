@@ -1,59 +1,44 @@
 import './MainPage.scss';
+import Panel from '../../components/Panel';
+import { Switch, Route } from 'react-router';
+import TaskPage from '../../components/TaskPage';
+import Stats from '../../components/Stats';
+import Profile from '../../components/Profile';
+import { Component } from 'react';
+import TaskInfo from '../../components/TaskInfo/TaskInfo';
+import usersOperations from '../../redux/users/operations-user';
+import { connect } from 'react-redux';
+import taskOperations from '../../redux/task/operations';
 
-const MainPage = () => {
-  return (
-    <div className="main_page">
-      <div className="main_advice">
-        <h2>10 ways to make your day as productive as possible</h2>
-        <ol>
-          <li>
-            <p>Every Sunday night, make plans for the week</p>
-          </li>
-          <li>
-            <p>Set aside time in advance for specific tasks</p>
-          </li>
-          <li>
-            <p>Make sure the list of tasks is achievable</p>
-          </li>
-          <li>
-            <p>Set up a 30-minute default meeting</p>
-          </li>
-          <li>
-            <p>Say no multitasking</p>
-          </li>
-          <li>
-            <p>Try to make the best use of «border» time</p>
-          </li>
-          <li>
-            <p>Watch the time</p>
-          </li>
-          <li>
-            <p>Think about dinner</p>
-          </li>
-          <li>
-            <p>
-              Don’t take up any of the time you have to spend with your family
-            </p>
-          </li>
-          <li>
-            <p>Start every day right</p>
-          </li>
-        </ol>
+class MainPage extends Component {
+  componentDidMount() {
+    this.props.getCurrentUser();
+    this.props.getAllTask();
+  }
+  render() {
+    return (
+      <div>
+        <div className="page_main">
+          <div>
+            <TaskInfo />
+            <Panel />
+          </div>
+          <div>
+            <Switch>
+              <Route exact path="/tasks" component={TaskPage} />
+              <Route exact path="/profile" component={Profile} />
+              <Route exact path="/stats" component={Stats} />
+            </Switch>
+          </div>
+        </div>
       </div>
-      <div className="main_img">
-        <img
-          src="https://ik.imagekit.io/s2fpg15d4rx/time_NifncTLm-ND.jpg"
-          alt="time"
-          id="time_img"
-        />
-        <img
-          src="https://ik.imagekit.io/s2fpg15d4rx/glasses1_4_fSdw54Wgo.jpg"
-          alt="glasses"
-          id="glasses"
-        />
-      </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
-export default MainPage;
+const mapDispatchToProps = dispatch => ({
+  getCurrentUser: () => dispatch(usersOperations.getCurrentUser()),
+  getAllTask: () => dispatch(taskOperations.getTask()),
+});
+
+export default connect(null, mapDispatchToProps)(MainPage);

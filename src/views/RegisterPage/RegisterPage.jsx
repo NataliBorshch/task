@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import userOperations from '../../redux/users/operations-user';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
 
 class RegisterPage extends Component {
   state = {
@@ -23,17 +24,23 @@ class RegisterPage extends Component {
     this.props.onSubmit({ ...this.state });
   };
   render() {
+    const { name, password, email } = this.state;
     return (
       <div className="register_page">
-        <h1 className="page_name">Registration </h1>
+        <h1 className="page_name">
+          Registration <BusinessCenterIcon fontSize="large" />
+        </h1>
+
         <form className="register_form" onSubmit={this.handleSubmit}>
           <TextField
             required
             name="name"
             type="text"
+            value={name}
             label="name"
             style={{
               width: '100%',
+              marginBottom: '10px',
             }}
             onChange={this.handleChange}
           />
@@ -42,8 +49,10 @@ class RegisterPage extends Component {
             name="email"
             type="email"
             label="email"
+            value={email}
             style={{
               width: '100%',
+              marginBottom: '10px',
             }}
             onChange={this.handleChange}
           />
@@ -52,15 +61,24 @@ class RegisterPage extends Component {
             name="password"
             type="password"
             label="password"
+            value={password}
             style={{
               width: '100%',
+              marginBottom: '10px',
             }}
             onChange={this.handleChange}
           />
-          {/* <Button>Sign In </Button> */}
-          <button type="submit" className="form_btn">
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            style={{
+              color: 'white',
+            }}
+            disableElevation
+          >
             Sing IN
-          </button>
+          </Button>
         </form>
       </div>
     );

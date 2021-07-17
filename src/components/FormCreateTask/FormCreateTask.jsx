@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
+//redux
 import { connect } from 'react-redux';
 import operations from '../../redux/task/operations';
-import Icon from '../Icon';
-import './Form.scss';
-import moment from 'moment';
 import selectors from '../../redux/task/selectors';
+//styles
+import './Form.scss';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
-//done
 class FormCreateTask extends Component {
   state = {
     name: '',
     description: '',
-    // date_target: moment().format('DD:MM:YYYY hh:mm:ss'),
-    // status: 'todo',
-    // priority: false,
   };
 
   handleInput = evt => {
@@ -39,35 +37,43 @@ class FormCreateTask extends Component {
       <p>Loading...</p>
     ) : (
       <form onSubmit={this.handleSubmit} className="form_create_task">
-        <label className="form_label">
-          Name Task
-          <input
-            type="text"
-            placeholder="name task"
-            value={name}
-            name="name"
-            onChange={this.handleInput}
-            required
-            className="form_input"
-          />
-        </label>
+        <TextField
+          required
+          name="name"
+          color="primary"
+          value={name}
+          type="text"
+          label="Name Task"
+          style={{
+            width: '100%',
+            marginBottom: '10px',
+          }}
+          onChange={this.handleInput}
+        />
+        <TextField
+          required
+          name="description"
+          value={description}
+          type="text"
+          label="Description"
+          style={{
+            width: '100%',
+            marginBottom: '10px',
+          }}
+          onChange={this.handleInput}
+        />
 
-        <label className="form_label">
-          Description
-          <input
-            type="text"
-            placeholder="description task"
-            required
-            name="description"
-            value={description}
-            onChange={this.handleInput}
-            className="form_input"
-          />
-        </label>
-
-        <button type="submit" className="form_create_btn">
-          <Icon icon="plus" size={60} className="btn_icon" />
-        </button>
+        <Button
+          variant="contained"
+          type="submit"
+          color="primary"
+          style={{
+            color: 'white',
+          }}
+          disableElevation
+        >
+          add Task
+        </Button>
       </form>
     );
   }

@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
 import operations from '../../redux/task/operations';
 import './FormUpdate.scss';
 import Select from 'react-select';

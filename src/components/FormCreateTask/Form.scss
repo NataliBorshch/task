@@ -20,21 +20,6 @@
   text-transform: uppercase;
 }
 
-.form_input {
-  display: block;
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 15px;
-  border: 2px solid white;
-  margin: 8px 0;
-  outline: none;
-}
-.form_input:hover,
-.form_input:active,
-.form_input:focus {
-  border: 2px solid rgba(56, 187, 165, 0.616);
-}
-
 .form_create_btn {
   background: inherit;
   border-radius: 100%;

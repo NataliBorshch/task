@@ -1,40 +1,72 @@
 import React from 'react';
-import { Component } from 'react';
-import { createPortal } from 'react-dom';
-import './Modal.scss';
+//materia
+import { makeStyles } from '@material-ui/core/styles';
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
+import AddIcon from '@material-ui/icons/Add';
+import Fab from '@material-ui/core/Fab';
+import FormCreateTask from '../FormCreateTask/FormCreateTask';
 
-const modalRoot = document.getElementById('modal-root');
+const useStyles = makeStyles(theme => ({
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+    background: 'rgba(51, 49, 119, 0.603)',
+  },
+}));
 
-class Modal extends Component {
-  componentDidMount() {
-    window.addEventListener('keydown', this.handleModalKeyDown);
-  }
+export default function TransitionsModal() {
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
 
-  componentWillMount() {
-    window.removeEventListener('keydown', this.handleModalKeyDown);
-  }
-
-  handleModalOverlay = event => {
-    if (event.target.className === event.currentTarget.className) {
-      this.props.onClose();
-    }
+  const handleOpen = () => {
+    setOpen(true);
   };
 
-  handleModalKeyDown = event => {
-    if (event.code === 'Escape') {
-      this.props.onClose();
-    }
+  const handleClose = () => {
+    setOpen(false);
   };
 
-  render() {
-    return createPortal(
-      <div className="overlay" onClick={this.handleModalOverlay}>
-        <div className="modal">{this.props.children}</div>
-      </div>,
-      modalRoot,
-    );
-  }
+  return (
+    <div>
+      <Fab onClick={handleOpen} aria-label="add">
+        <AddIcon
+          style={{
+            color: 'rgba(51, 49, 119, 0.603)',
+          }}
+        />
+      </Fab>
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade
+          in={open}
+          style={{
+            background: 'rgb(94, 104, 192)',
+            borderRadius: '5px ',
+          }}
+        >
+          <div className={classes.paper}>
+            <FormCreateTask />
+          </div>
+        </Fade>
+      </Modal>
+    </div>
+  );
 }
-
-export default Modal;
-export { Modal };

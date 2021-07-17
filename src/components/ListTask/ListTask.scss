@@ -10,13 +10,29 @@ table {
 .table_name {
   font-size: 25px;
   font-family: 'Satisfy';
-  color: rgb(17, 66, 17);
+  color: rgba(214, 218, 230, 0.918);
+}
+.sort_up {
+  margin-left: 5px;
+  background: inherit;
+  border: none;
+  outline: none;
+  padding: 0px;
+  color: white;
+}
+.sort_down {
+  background: inherit;
+  border: none;
+  outline: none;
+  padding: 0px;
+  color: white;
 }
 th {
-  background: #56e6d346;
+  background: #312d70d7;
   color: white;
-  text-shadow: 0 1px 1px #2d2020;
-  padding: 10px 20px;
+  text-shadow: 0 1px 1px #2a2a50;
+  padding: 10px;
+  text-align: center;
 }
 th,
 td {
@@ -37,7 +53,7 @@ th:last-child {
 }
 td {
   padding: 5px;
-  background: #c6e5eb54;
+  background: #6678b354;
 }
 tr:last-child td:first-child {
   border-radius: 0 0 0 10px;

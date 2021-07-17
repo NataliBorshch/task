@@ -3,7 +3,6 @@ import Icon from '../Icon';
 import './Task.scss';
 import Modal from '../Modal/Modal';
 import FormUpdate from '../FormUpdate';
-// import actions from '../../redux/task';
 import { connect } from 'react-redux';
 import operations from '../../redux/task/operations';
 
@@ -47,23 +46,26 @@ class Task extends Component {
     const { showModal } = this.state;
     return (
       <>
-        <th id="id">{item.id}</th>
-        <th id="name">{item.name}</th>
-        <th id="date">{item.createdAt}</th>
-        <th id="description">{item.description}</th>
-        <th>
+        <th id="id" className="task_item">
+          {item.id}
+        </th>
+        <th id="name" className="task_item">
+          {item.name}
+        </th>
+        <th id="date" className="task_item">
+          {item.createdAt}
+        </th>
+        <th id="description" className="task_item">
+          {item.description}
+        </th>
+        <th className="task_item">
           <FormControlLabel
             control={<GreenCheckbox checked={item.priority} />}
             label="Priority Task"
           />
         </th>
-        <th>
-          {/* <select className="status_option" value={item.status}>
-            <option id="status">{item.status}</option>
-          </select> */}
-          {item.status}
-        </th>
-        <th>
+        <th className="task_item">{item.status}</th>
+        <th className="task_item">
           <button>
             <Icon icon="minus" size={20} color="red" />
           </button>

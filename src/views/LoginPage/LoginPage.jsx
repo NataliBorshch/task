@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../RegisterPage/RegisterPage.scss';
 import usersOperations from '../../redux/users/operations-user';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
 
 class LoginPage extends Component {
   state = {
@@ -19,37 +22,49 @@ class LoginPage extends Component {
     this.props.onSubmit({ ...this.state });
   };
   render() {
+    const { email, password } = this.state;
+    console.log(this.state);
     return (
       <div className="register_page">
-        <h1 className="page_name">Log In </h1>
-        <form className="register_form" onSubmit={this.handleSubmit}>
-          <label className="form_label">
-            Email
-            <input
-              value={this.state.email}
-              className="form_input"
-              required
-              type="email"
-              id="email"
-              name="email"
-              onChange={this.handleChange}
-            />
-          </label>
-          <label className="form_label">
-            Password
-            <input
-              className="form_input"
-              value={this.state.password}
-              required
-              name="password"
-              type="text"
-              id="password"
-              onChange={this.handleChange}
-            />
-          </label>
-          <button type="submit" className="form_btn">
+        <h1 className="page_name">
+          Log In <BusinessCenterIcon fontSize="large" />
+        </h1>
+
+        <form className="register_form" onSubmit={e => this.handleSubmit(e)}>
+          <TextField
+            required
+            name="email"
+            type="email"
+            label="email"
+            value={email}
+            style={{
+              width: '100%',
+              marginBottom: '10px',
+            }}
+            onChange={this.handleChange}
+          />
+          <TextField
+            required
+            name="password"
+            type="password"
+            value={password}
+            label="password"
+            style={{
+              width: '100%',
+              marginBottom: '10px',
+            }}
+            onChange={this.handleChange}
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            style={{
+              color: 'white',
+            }}
+            type="submit"
+          >
             log in
-          </button>
+          </Button>
         </form>
       </div>
     );
