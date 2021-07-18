@@ -1,6 +1,6 @@
 # Planning system
 
-### Getting Started server JSON npm run [servers](https://github.com/NataliBorshch/be-task)
+### Getting Started server  npm run dev  [servers](https://github.com/NataliBorshch/be-task)
 
 ### Getting Started applications npm start [http://localhost:3000]
 
