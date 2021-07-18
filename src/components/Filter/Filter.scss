@@ -2,7 +2,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #56e6d346;
+  background: #2f2e5885;
   padding: 15px;
   border-radius: 5px;
+  margin-left: 20px;
+}
+
+.form_label_filter {
+  color: white;
+  text-transform: uppercase;
+}
+
+.form_input_filter {
+  background: inherit;
+  border: none;
+  border-bottom: 1px solid white;
+  color: white;
+  margin-left: 10px;
 }

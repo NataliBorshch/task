@@ -1,90 +1,69 @@
 import { Component } from 'react';
-import Icon from '../Icon';
-import './Task.scss';
-import Modal from '../Modal/Modal';
-import FormUpdate from '../FormUpdate';
 import { connect } from 'react-redux';
+import moment from 'moment';
+// component
+import ModalEdit from '../ModalEdit';
+// redux
 import operations from '../../redux/task/operations';
-
+// materia
+import IconButton from '@material-ui/core/IconButton';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import { withStyles } from '@material-ui/core/styles';
-import { green } from '@material-ui/core/colors';
+import DeleteIcon from '@material-ui/icons/Delete';
+import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
 
-const GreenCheckbox = withStyles({
-  root: {
-    color: green[400],
-    '&$checked': {
-      color: green[600],
-    },
-  },
-  checked: {},
-})(props => <Checkbox color="default" {...props} />);
+// styles
+import './Task.scss';
+
+//  done
 
 class Task extends Component {
-  state = {
-    showModal: false,
-  };
-
-  openModal = () => {
-    this.setState({ showModal: true });
-  };
-  onCloseModal = () => {
-    this.setState({ showModal: false });
-  };
-
-  onRejectTask = event => {
-    // console.dir(event.target);
-  };
-
-  onTogglePriority = event => {
-    // console.log(event.target.checked);
-  };
-
   render() {
-    const { item, onDelete } = this.props;
-    const { showModal } = this.state;
+    const { item, onDelete, index, onRejectTask } = this.props;
     return (
       <>
-        <th id="id" className="task_item">
-          {item.id}
+        <th id="id" className={item.reject ? 'task_item_reject' : 'task_item'}>
+          {index}
         </th>
-        <th id="name" className="task_item">
+        <th
+          id="name"
+          className={item.reject ? 'task_item_reject' : 'task_item'}
+        >
           {item.name}
         </th>
-        <th id="date" className="task_item">
-          {item.createdAt}
+        <th
+          id="date"
+          className={item.reject ? 'task_item_reject' : 'task_item'}
+        >
+          {moment(item.createAt).format('DD:MM:YYYY hh:mm:ss')}
         </th>
-        <th id="description" className="task_item">
+        <th
+          id="description"
+          className={item.reject ? 'task_item_reject' : 'task_item'}
+        >
           {item.description}
         </th>
-        <th className="task_item">
+        <th className={item.reject ? 'task_item_reject' : 'task_item'}>
+          {item.status}
+        </th>
+        <th className={item.reject ? 'task_item_reject' : 'task_item'}>
           <FormControlLabel
-            control={<GreenCheckbox checked={item.priority} />}
-            label="Priority Task"
+            control={<Checkbox checked={item.priority} color="primary" />}
           />
         </th>
-        <th className="task_item">{item.status}</th>
-        <th className="task_item">
-          <button>
-            <Icon icon="minus" size={20} color="red" />
-          </button>
-          <button id="edit" onClick={this.openModal} type="button">
-            <Icon icon="edit" size={20} color="blue" />
-            {showModal && (
-              <Modal onClose={this.onCloseModal}>
-                <FormUpdate task={item} onClose={this.onCloseModal} />
-              </Modal>
-            )}
-          </button>
 
-          <button
-            type="button"
-            id="delete_task"
-            onClick={() => onDelete(item.id)}
+        <th className={item.reject ? 'task_item_reject' : 'task_item'}>
+          <IconButton
+            aria-label="reject"
+            onClick={() => onRejectTask(item.id, { reject: true })}
           >
-            <Icon icon="delete" size={20} color="red" />
-          </button>
+            <RemoveCircleIcon />
+          </IconButton>
+
+          <ModalEdit item={item} />
+          <IconButton aria-label="close" onClick={() => onDelete(item.id)}>
+            <DeleteIcon />
+          </IconButton>
         </th>
       </>
     );
@@ -93,8 +72,9 @@ class Task extends Component {
 
 const mapDispatchToProps = dispatch => ({
   onDelete: id => dispatch(operations.removeTask(id)),
+  onRejectTask: (id, data) => dispatch(operations.rejectionTask(id, data)),
 });
 
 export default connect(null, mapDispatchToProps)(Task);
 
-export { Task };
+// export { Task };

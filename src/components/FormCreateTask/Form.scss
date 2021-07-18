@@ -8,32 +8,3 @@
   padding: 5px;
   width: 350px;
 }
-
-.form_label {
-  width: 100%;
-  flex-direction: column;
-  text-align: start;
-  display: flex;
-  font-family: 'Uchen', serif;
-  font-size: 15px;
-  color: rgb(14, 105, 90);
-  text-transform: uppercase;
-}
-
-.form_create_btn {
-  background: inherit;
-  border-radius: 100%;
-  border: none;
-  outline: none;
-  padding: 0px;
-}
-
-.btn_icon {
-  color: white;
-}
-
-.btn_icon:focus,
-.btn_icon:active,
-.btn_icon:hover {
-  color: rgba(43, 168, 147, 0.616);
-}

@@ -1,13 +1,17 @@
-import selectors from '../../redux/task/selectors';
-import './ListTask.scss';
-import Task from '../Task/index';
-import { connect } from 'react-redux';
-import actions from '../../redux/task/actions';
 import { Component } from 'react';
-import Fab from '@material-ui/core/Fab';
+import { connect } from 'react-redux';
+// redux
+import selectors from '../../redux/task/selectors';
+import actions from '../../redux/task/actions';
+// components
+import Task from '../Task/index';
+// materia
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+// styes
+import './ListTask.scss';
 
+// done
 class ListTask extends Component {
   render() {
     const { tasks, sortByUp, sortByDown } = this.props;
@@ -119,9 +123,9 @@ class ListTask extends Component {
             </thead>
             <tbody>
               {tasks.length > 0 &&
-                tasks.map(item => (
+                tasks.map((item, i) => (
                   <tr key={item.id}>
-                    <Task item={item} />
+                    <Task item={item} index={i + 1} />
                   </tr>
                 ))}
             </tbody>
@@ -143,4 +147,4 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListTask);
 
-export { ListTask };
+// export { ListTask };

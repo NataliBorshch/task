@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import '../RegisterPage/RegisterPage.scss';
+// redux
 import usersOperations from '../../redux/users/operations-user';
+// materia
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
-
+// styles
+import '../RegisterPage/RegisterPage.scss';
+// done
 class LoginPage extends Component {
   state = {
     email: '',
@@ -23,7 +26,6 @@ class LoginPage extends Component {
   };
   render() {
     const { email, password } = this.state;
-    console.log(this.state);
     return (
       <div className="register_page">
         <h1 className="page_name">

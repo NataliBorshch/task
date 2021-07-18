@@ -1,18 +1,17 @@
-import operations from '../../redux/task/operations';
-import './FormUpdate.scss';
-import Select from 'react-select';
-import { Component } from 'react';
-import { Checkbox } from '@material-ui/core';
 import { connect } from 'react-redux';
-
-const status = ['todo', 'ready', 'in progress', 'complited'];
-
-const options = [
-  { value: 'todo', label: 'todo' },
-  { value: 'ready', label: 'ready' },
-  { value: 'in progress', label: 'in progress' },
-  { value: 'complited', label: 'complited' },
-];
+import { Component } from 'react';
+// redux
+import operations from '../../redux/task/operations';
+// componets
+import SimpleSelect from './Select';
+// materia
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+// styles
+import './FormUpdate.scss';
+// done
 
 class FormUpdate extends Component {
   state = {
@@ -23,11 +22,12 @@ class FormUpdate extends Component {
   };
 
   componentDidMount() {
-    this.setState({ ...this.props.task });
+    const { name, priority, status, description } = this.props.task;
+    this.setState({ name, priority, status, description });
   }
 
-  handleChangeSelect = event => {
-    this.setState({ status: event.value });
+  handleChangeCategory = event => {
+    this.setState({ status: event.target.value });
   };
 
   handleInput = evt => {
@@ -35,12 +35,11 @@ class FormUpdate extends Component {
       evt.target.type === 'checkbox' ? evt.target.checked : evt.target.value;
     const name = evt.target.name;
     this.setState({ [name]: value });
-    console.log(this.state);
   };
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.updateTask(this.state.id, { ...this.state });
+    this.props.updateTask(this.props.task.id, { ...this.state });
     this.reset();
   };
 
@@ -52,58 +51,53 @@ class FormUpdate extends Component {
     const { name, description, status, priority } = this.state;
     return (
       <form className="form_update" onSubmit={this.handleSubmit}>
-        <label className="form_label">
-          Name
-          <input
-            value={name}
-            name="name"
-            onChange={this.handleInput}
-            className="form_input"
-          />
-        </label>
-        <label className="form_label">
-          Descriptions
-          <input
-            value={description}
-            name="description"
-            onChange={this.handleInput}
-            className="form_input"
-          />
-        </label>
-        <Checkbox
-          value={priority}
-          name="priority"
-          inputProps={{ 'aria-label': 'Checkbox A' }}
-          onClick={this.handleInput}
-          checked={priority}
-          id="checkbox"
+        <TextField
+          required
+          name="name"
+          type="text"
+          value={name}
+          label="name"
+          style={{
+            width: '100%',
+            marginBottom: '10px',
+          }}
+          onChange={this.handleInput}
+        />
+        <TextField
+          required
+          name="description"
+          type="text"
+          value={description}
+          label="description"
+          style={{
+            width: '100%',
+            marginBottom: '10px',
+          }}
+          onChange={this.handleInput}
         />
 
-        <Select
-          value={status}
-          onChange={this.handleChangeSelect}
-          options={options}
-          defaultValue={status}
-          name={options}
-          width="250px"
-          className="css-e56m7-control"
-          theme={theme => ({
-            ...theme,
-            borderRadius: 0,
-            width: '250px',
-            colors: {
-              ...theme.colors,
-              primary25: 'hotpink',
-              primary: 'dangerLight',
-            },
-          })}
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={priority}
+              onClick={this.handleInput}
+              name="priority"
+              color="primary"
+              value={priority}
+            />
+          }
+          label="Priority ?"
         />
-        <button type="button" className="form_btn">
-          Save
-        </button>
-        <button className="form_btn" type="button" onClick={this.props.onClose}>
-          Close
-        </button>
+
+        <SimpleSelect
+          name="category"
+          status={status}
+          value={status}
+          handleChange={this.handleChangeCategory}
+        />
+        <Button variant="contained" color="primary" type="submit">
+          SAVE
+        </Button>
       </form>
     );
   }
@@ -115,4 +109,4 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(null, mapDispatchToProps)(FormUpdate);
 
-export { FormUpdate };
+// export { FormUpdate };

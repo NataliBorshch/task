@@ -8,7 +8,6 @@ const getTask = () => dispatch => {
   axios
     .get('/task')
     .then(({ data }) => {
-      console.log(data.data);
       return dispatch(actions.getTaskSuccess(data.data));
     })
     .catch(error => dispatch(actions.getTaskError(error.message)));
@@ -39,18 +38,18 @@ const updateTask = (id, data) => dispatch => {
   axios
     .put(`/task/${id}`, data)
     .then(({ data }) => {
-      console.log(data);
-      return dispatch(actions.updateTaskSuccess(data));
+      return dispatch(actions.updateTaskSuccess(data.data.task));
     })
     .catch(error => dispatch(actions.updateTaskError(error.message)));
 };
 
-const rejectionTask = id => dispatch => {
+const rejectionTask = (id, data) => dispatch => {
   dispatch(actions.removeTaskRequest());
   axios
-    .patch(`/task/${id}`)
+    .patch(`/task/${id}/reject`, data)
     .then(({ data }) => {
-      return dispatch(actions.rejectionTaskSuccess(data));
+      console.log(data);
+      return dispatch(actions.rejectionTaskSuccess(data.data.task));
     })
     .catch(error => actions.rejectionTaskError(error.message));
 };

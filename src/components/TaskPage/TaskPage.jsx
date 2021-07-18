@@ -1,14 +1,20 @@
 import { Component } from 'react';
+// components
 import TransitionsModal from '../Modal';
 import ListTask from '../ListTask';
+import Filter from '../Filter';
+// styles
 import './TaskPage.scss';
+// done
 
-class Task extends Component {
+class TaskPage extends Component {
   render() {
     return (
-      <div>
-        <h>Task</h>
-        <TransitionsModal />
+      <div className="page_task">
+        <div className="box_task_page">
+          <TransitionsModal />
+          <Filter />
+        </div>
         <div className="task_table">
           <ListTask />
         </div>
@@ -17,4 +23,4 @@ class Task extends Component {
   }
 }
 
-export default Task;
+export default TaskPage;

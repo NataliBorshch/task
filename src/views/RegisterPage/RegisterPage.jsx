@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import './RegisterPage.scss';
 import { connect } from 'react-redux';
+// redux
 import userOperations from '../../redux/users/operations-user';
+// materia
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
+// styles
+import './RegisterPage.scss';
+// done
 
 class RegisterPage extends Component {
   state = {
@@ -20,7 +24,6 @@ class RegisterPage extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log(this.state);
     this.props.onSubmit({ ...this.state });
   };
   render() {

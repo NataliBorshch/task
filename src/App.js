@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, Component } from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Redirect, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 // conponents
 import Container from './components/Container';
@@ -14,8 +14,6 @@ import PublicRoute from './routers/PublicRoter';
 import usersOperations from './redux/users/operations-user';
 
 // lazy
-// import LoginPage from './views/LoginPage';
-
 const MainPage = lazy(() =>
   import('./views/MainPage' /* webpackChunkName: "main-page" */),
 );
@@ -38,34 +36,24 @@ class App extends Component {
           <AppBar />
           <Suspense fallback={<Spinner />}>
             <Switch>
-              {/* <PublicRoute
-                path={routers.main}
-                exact
+              <PrivateRoute
+                path="/home"
                 component={MainPage}
-                redirectTo={routers.main}
-                restricted
-              /> */}
-              {/* <Route path="/" component={MainPage}></Route> */}
-
+                redirectTo={routers.logins}
+              />
               <PublicRoute
                 exact
                 path={routers.register}
                 component={RegisterPage}
-                redirectTo={routers.tasks}
+                redirectTo="/home"
                 restricted
               />
-
               <PublicRoute
                 exact
                 path={routers.logins}
                 component={LoginPage}
-                redirectTo={routers.tasks}
+                redirectTo="/home"
                 restricted
-              />
-              <PrivateRoute
-                path={routers.main}
-                component={MainPage}
-                redirectTo={routers.logins}
               />
 
               <Redirect path={routers.login} />

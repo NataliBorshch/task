@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
-import App from './App';
-import store from './redux/store';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
+//store
+import store from './redux/store';
+// components
+import App from './App';
 import Spinner from './components/Spinner';
+// styles
+import './index.scss';
 
 ReactDOM.render(
   <Provider store={store.store}>

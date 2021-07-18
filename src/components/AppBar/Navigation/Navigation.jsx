@@ -2,35 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 //routers selectors
-import routers from '../../../routers/routers';
 import userSelectors from '../../../redux/users/select-use';
 
 const Navigation = ({ isAuthenticated }) => {
   return (
     <nav id="nav">
       <ul>
-        {/* <li>
-          <NavLink
-            exact
-            to={routers.main}
-            className="nav_item"
-            activeClassName="nav_activ"
-            id="main"
-          >
-            Main
-          </NavLink>
-        </li> */}
-
         {isAuthenticated && (
           <li>
             <NavLink
               exact
-              to={routers.tasks}
+              to="/home"
               className="nav_item"
-              activeClassName="nav_activ"
+              activeClassName="nav_active"
               id="task"
             >
-              Task
+              Home
             </NavLink>
           </li>
         )}

@@ -1,13 +1,16 @@
 import { Component } from 'react';
+import { connect } from 'react-redux';
+// materia
 import PersonIcon from '@material-ui/icons/Person';
 import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
 import LockIcon from '@material-ui/icons/Lock';
 import EmailIcon from '@material-ui/icons/Email';
-import './Profile.scss';
-import usersOperations from '../../redux/users/operations-user';
-import { connect } from 'react-redux';
+// redux
 import userSelector from '../../redux/users/select-use';
 import taskSelector from '../../redux/task/selectors';
+// styles
+import './Profile.scss';
+//done
 
 class Profile extends Component {
   state = {
@@ -18,7 +21,6 @@ class Profile extends Component {
 
   render() {
     const { user, taskCount } = this.props;
-    console.log(user);
     return (
       <div className="profile">
         <h2 className="profile_name">Profile</h2>

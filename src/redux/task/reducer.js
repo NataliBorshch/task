@@ -29,7 +29,8 @@ const items = createReducer([], {
     state.filter(({ id }) => id !== payload),
   [actions.updateTaskSuccess]: (state, { payload }) =>
     state.map(item => (item.id !== payload.id ? item : payload)),
-  [actions.rejectionTaskSuccess]: (state, { payload }) => [...state, payload],
+  [actions.rejectionTaskSuccess]: (state, { payload }) =>
+    state.map(item => (item.id !== payload.id ? item : payload)),
   [actions.SortTaskUp]: (state, { payload }) => [...sortByUp(state, payload)],
   [actions.SortTaskDown]: (state, { payload }) => [
     ...sortByDown(state, payload).reverse(),
@@ -39,7 +40,6 @@ const items = createReducer([], {
 const filter = createReducer('', {
   [actions.filterTask]: (_, { payload }) => payload,
 });
-//done
 
 //done
 const isLoading = createReducer(false, {

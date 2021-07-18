@@ -16,17 +16,28 @@ const getCurrentUserRequest = createAction('users/getCurrentUserRequest');
 const getCurrentUserSuccess = createAction('users/getCurrentUserSuccess');
 const getCurrentUserError = createAction('users/getCurrentUserError');
 
+const uploadAvatarRequest = createAction('auth/uploadAvatarRequest');
+const uploadAvatarSuccess = createAction('auth/uploadAvatarSuccess');
+const uploadAvatarError = createAction('auth/uploadAvatarError');
+
 export default {
   registerRequest,
   registerSuccess,
   registerError,
+
   loginRequest,
   loginSuccess,
   loginError,
+
   logoutRequest,
   logoutSuccess,
   logoutError,
+
   getCurrentUserRequest,
   getCurrentUserSuccess,
   getCurrentUserError,
+
+  uploadAvatarRequest,
+  uploadAvatarSuccess,
+  uploadAvatarError,
 };

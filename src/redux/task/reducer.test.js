@@ -1,4 +1,3 @@
-import { render, screen } from '@testing-library/react';
 import actions from './actions';
 import reducer from './reducer';
 

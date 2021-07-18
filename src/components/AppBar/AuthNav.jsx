@@ -1,7 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
+// routers
 import routers from '../../routers/routers';
+import { v4 as uuidv4 } from 'uuid';
+// styles
+import './AppBar.scss';
 
 const AuthNav = () => {
   return (
@@ -11,7 +14,7 @@ const AuthNav = () => {
           id="login"
           to={routers.login}
           className="nav_item"
-          activeClassName="nav_activ"
+          activeClassName="nav_active"
         >
           Log in
         </NavLink>
@@ -21,7 +24,7 @@ const AuthNav = () => {
           id="singin"
           to={routers.register}
           className="nav_item"
-          activeClassName="nav_activ"
+          activeClassName="nav_active"
         >
           Sing up
         </NavLink>

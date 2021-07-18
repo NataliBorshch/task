@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import './UserMenu.scss';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import userSelectors from '../../../redux/users/select-use';
 import userOperation from '../../../redux/users/operations-user';
+import './UserMenu.scss';
 
 const UserMenu = ({ name, onLogout }) => {
   return (

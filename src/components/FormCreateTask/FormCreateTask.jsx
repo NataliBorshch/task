@@ -8,6 +8,10 @@ import './Form.scss';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
+import Spinner from '../Spinner';
+
+// done
+
 class FormCreateTask extends Component {
   state = {
     name: '',
@@ -21,7 +25,6 @@ class FormCreateTask extends Component {
 
   handleSubmit = evt => {
     evt.preventDefault();
-    console.log(this.state);
     this.props.addTask({ ...this.state });
     this.reset();
   };
@@ -34,7 +37,7 @@ class FormCreateTask extends Component {
     const { name, description } = this.state;
 
     return this.props.isLoading ? (
-      <p>Loading...</p>
+      <Spinner />
     ) : (
       <form onSubmit={this.handleSubmit} className="form_create_task">
         <TextField

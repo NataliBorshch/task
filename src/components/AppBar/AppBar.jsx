@@ -1,10 +1,11 @@
-import './AppBar.scss';
 import React from 'react';
+import { connect } from 'react-redux';
 import Navigation from '../AppBar/Navigation/Navigation';
 import AuthNav from './AuthNav';
 import UserMenu from '../AppBar/UserMenu/UserMenu';
+
 import selectors from '../../redux/users/select-use';
-import { connect } from 'react-redux';
+import './AppBar.scss';
 
 const AppBar = ({ isAuthenticated }) => {
   return (

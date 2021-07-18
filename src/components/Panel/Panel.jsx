@@ -1,10 +1,13 @@
 import { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import './Panel.scss';
+// materia
 import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 import PersonIcon from '@material-ui/icons/Person';
+// styles
+import './Panel.scss';
 
+// done
 class Panel extends Component {
   render() {
     return (
@@ -13,7 +16,7 @@ class Panel extends Component {
           <li className="panel_item">
             <NavLink
               exact
-              to="/tasks"
+              to="/home/tasks"
               className="panel_link"
               activeClassName="panel_link_active"
             >
@@ -27,7 +30,7 @@ class Panel extends Component {
           <li className="panel_item">
             <NavLink
               exact
-              to="/profile"
+              to="/home/profile"
               className="panel_link"
               activeClassName="panel_link_active"
             >
@@ -38,7 +41,7 @@ class Panel extends Component {
           <li className="panel_item">
             <NavLink
               exact
-              to="/stats"
+              to="/home/stats"
               className="panel_link"
               activeClassName="panel_link_active"
             >

@@ -1,20 +1,21 @@
+import { connect } from 'react-redux';
 import selectors from '../../redux/task/selectors';
 import actions from '../../redux/task/actions';
+// styles
 import './Filter.scss';
-import { connect } from 'react-redux';
 
 //DONE
 
 const Filter = ({ filter, getFilter }) => {
   return (
     <div className="filter_search">
-      <label className="form_label">
-        Filter by name Task
+      <label className="form_label_filter">
+        Filter by Status Task
         <input
           type="text"
           value={filter}
           onChange={getFilter}
-          className="form_input"
+          className="form_input_filter"
         />
       </label>
     </div>
@@ -31,4 +32,4 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);
 
-export { Filter };
+// export { Filter };

@@ -1,20 +1,27 @@
 .box_infoTask {
   margin: 20px 10px;
-  background: rgba(33, 23, 90, 0.637);
+  background: linear-gradient(45deg, #1d1957, #c4d2da);
   color: white;
   border-radius: 10px;
   box-shadow: 0px 5px 10px 2px rgba(83, 81, 129, 0.603);
 }
 
 .list_info {
+  display: block;
   padding: 0px;
-  padding: 10px;
+  padding: 5px;
 }
 
 .item_info {
-  padding: 10px;
-  border-right: 1px solid white;
+  padding: 5px;
   margin: 0px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid white;
+}
+
+.item_count {
+  font-size: 15px;
 }
 .text {
   font-size: 20px;

@@ -47,6 +47,7 @@ export default {
   rejectionTaskError,
 
   filterTask,
+
   SortTaskUp,
   SortTaskDown,
 };

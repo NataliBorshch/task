@@ -1,14 +1,17 @@
-import './MainPage.scss';
-import Panel from '../../components/Panel';
+import { connect } from 'react-redux';
+import { Component } from 'react';
 import { Switch, Route } from 'react-router';
+// component
 import TaskPage from '../../components/TaskPage';
+import Panel from '../../components/Panel';
 import Stats from '../../components/Stats';
 import Profile from '../../components/Profile';
-import { Component } from 'react';
 import TaskInfo from '../../components/TaskInfo/TaskInfo';
+// redux
 import usersOperations from '../../redux/users/operations-user';
-import { connect } from 'react-redux';
 import taskOperations from '../../redux/task/operations';
+// styles
+import './MainPage.scss';
 
 class MainPage extends Component {
   componentDidMount() {
@@ -25,9 +28,9 @@ class MainPage extends Component {
           </div>
           <div>
             <Switch>
-              <Route exact path="/tasks" component={TaskPage} />
-              <Route exact path="/profile" component={Profile} />
-              <Route exact path="/stats" component={Stats} />
+              <Route exact path="/home/tasks" component={TaskPage} />
+              <Route exact path="/home/profile" component={Profile} />
+              <Route exact path="/home/stats" component={Stats} />
             </Switch>
           </div>
         </div>

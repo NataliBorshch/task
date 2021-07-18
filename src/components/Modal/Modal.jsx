@@ -6,6 +6,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
+// component
 import FormCreateTask from '../FormCreateTask/FormCreateTask';
 
 const useStyles = makeStyles(theme => ({
@@ -58,7 +59,7 @@ export default function TransitionsModal() {
         <Fade
           in={open}
           style={{
-            background: 'rgb(94, 104, 192)',
+            background: 'linear-gradient(45deg, #1d1957, #c4d2da)',
             borderRadius: '5px ',
           }}
         >
