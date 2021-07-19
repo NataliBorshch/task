@@ -1,55 +1,62 @@
 import * as React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { Task } from '../Task';
-
-const item = {
-  name: 'Natali',
-  description: 'fhfghf',
-  date_created: '12:07:2021 10:33:22',
-  status: 'todo',
-  priority: false,
-  id: 3,
+import moment from 'moment';
+const props = {
+  item: {
+    name: 'Natali',
+    description: 'test1',
+    createAt: '12:07:2021 10:33:22',
+    status: 'todo',
+    priority: false,
+    id: 3,
+    reject: false,
+  },
+  index: 1,
 };
 
 describe('Task Components Utin Test  ', () => {
   let wrapper;
   it('Task initial state  ', () => {
-    wrapper = shallow(<Task item={item} />);
+    wrapper = shallow(<Task {...props} />);
     const id = wrapper.find('#id');
     const name = wrapper.find('#name');
     const date = wrapper.find('#date');
-    const priority = wrapper.find('#priority');
     const description = wrapper.find('#description');
-    const status = wrapper.find('#status');
-    expect(wrapper.length).toEqual(1);
-    expect(id.text()).toEqual(String(item.id));
-    expect(name.text()).toEqual(item.name);
-    expect(date.text()).toEqual(item.date_created);
-    expect(description.text()).toEqual(item.description);
-    expect(priority.prop('checked')).toEqual(item.priority);
-    expect(status.text()).toEqual(item.status);
-  });
 
-  it('Task Modal initialState', () => {
-    wrapper = shallow(<Task item={item} />);
-    expect(wrapper.state().showModal).toEqual(false);
+    expect(wrapper.length).toEqual(1);
+    expect(id.text()).toEqual(String(props.index));
+    expect(name.text()).toEqual(props.item.name);
+    expect(date.text()).toEqual(
+      moment(props.item.createAt).format('DD:MM:YYYY hh:mm:ss'),
+    );
+    expect(description.text()).toEqual(props.item.description);
   });
   it('Task delete component ', () => {
     const onDeleteMock = jest.fn();
-    const props = {
+    const newProps = {
+      ...props,
       onDelete: onDeleteMock,
     };
-    wrapper = shallow(<Task {...props} item={item} />);
+    wrapper = shallow(<Task {...newProps} />);
     const btnDelete = wrapper.find('#delete_task');
     btnDelete.simulate('click');
-    expect(onDeleteMock).toHaveBeenCalledWith(item.id);
+    expect(onDeleteMock).toHaveBeenCalledWith(props.item.id);
   });
-  it('Task btn Edit  open Modal', () => {
-    wrapper = shallow(<Task item={item} />);
-    const btnEdit = wrapper.find('#edit');
-    btnEdit.simulate('click');
+  it('Task  reject ', () => {
+    const onRejectTaskMock = jest.fn();
+    const newProps = {
+      ...props,
+      onRejectTask: onRejectTaskMock,
+    };
+    const data = {
+      reject: true,
+    };
+    wrapper = shallow(<Task {...newProps} />);
+    const btnReject = wrapper.find('#reject');
+    btnReject.simulate('click');
     wrapper.update();
 
-    expect(wrapper.state('showModal')).toEqual(true);
+    expect(onRejectTaskMock).toHaveBeenCalledWith(props.item.id, data);
   });
 });

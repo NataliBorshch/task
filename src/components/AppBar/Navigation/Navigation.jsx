@@ -31,3 +31,5 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(Navigation);
+
+export { Navigation };

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
-import UserMenu from '../UserMenu';
+import { UserMenu } from '../UserMenu';
 
 describe('UserMenu Components Utin Test  ', () => {
   let wrapper;
@@ -13,5 +13,12 @@ describe('UserMenu Components Utin Test  ', () => {
     wrapper = mount(<UserMenu name="" />);
     const usermenu = wrapper.find('p');
     expect(usermenu.text()).toEqual('Wellcome Guest');
+  });
+  it('UserMenu Unit Test user log out', () => {
+    const onLogoutMock = jest.fn();
+    wrapper = mount(<UserMenu onLogout={onLogoutMock} />);
+    const btnLogout = wrapper.find('.btn_logout');
+    btnLogout.simulate('click');
+    expect(onLogoutMock).toHaveBeenCalled();
   });
 });

@@ -1,39 +1,44 @@
 import * as React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { FormUpdate } from '../FormUpdate';
+import TextField from '@material-ui/core/TextField';
 
-const initialState = {
-  name: '',
-  priority: false,
-  status: '',
-  description: '',
+const props = {
+  task: {
+    name: '',
+    priority: false,
+    status: '',
+    description: '',
+  },
 };
 
 describe('FormUpdate Components Unit Test', () => {
   let wrapper;
-  it('FormUpdate initial state', () => {
-    wrapper = shallow(<FormUpdate />);
-    wrapper.setState(initialState);
-    expect(wrapper.state()).toEqual(initialState);
+  it('FormUpdate to be mount', () => {
+    wrapper = shallow(<FormUpdate {...props} />);
+    expect(wrapper.length).toEqual(1);
   });
 
   it('FormUpdate mount witch task  which needs to be updated', () => {
-    const task = {
-      name: 'Task1',
-      priority: true,
-      status: 'todo',
-      description: 'coverage 80% ',
+    const newProps = {
+      task: {
+        name: 'Task1',
+        priority: true,
+        status: 'todo',
+        description: 'coverage 80% ',
+      },
     };
-    wrapper = shallow(<FormUpdate />);
-    wrapper.setState(task);
-    expect(wrapper.state()).toEqual(task);
+    wrapper = shallow(<FormUpdate {...newProps} />);
+    wrapper.setState(newProps.task);
+    expect(wrapper.state()).toEqual(newProps.task);
   });
   it('FormUpdate called submit update task', () => {
     const updateTaskMock = jest.fn();
-    const props = {
+    const newProps = {
+      ...props,
       updateTask: updateTaskMock,
     };
-    wrapper = shallow(<FormUpdate {...props} />);
+    wrapper = shallow(<FormUpdate {...newProps} />);
     const form = wrapper.find('.form_update');
     form.simulate('submit', { preventDefault: () => {} });
     wrapper.update();
@@ -41,10 +46,18 @@ describe('FormUpdate Components Unit Test', () => {
   });
 
   it('FormUpdate Task  handleChange input', () => {
-    wrapper = shallow(<FormUpdate />);
-    const inputName = wrapper.find('input').first();
-    const inputDescription = wrapper.find('input').at(1);
-    const checkbox = wrapper.find('#checkbox');
+    const newProps = {
+      task: {
+        name: 'Task1',
+        priority: true,
+        status: 'todo',
+        description: 'coverage 80% ',
+      },
+    };
+    wrapper = shallow(<FormUpdate {...props} />);
+    wrapper.setState(newProps.task);
+    const inputName = wrapper.find(TextField).first();
+    const inputDescription = wrapper.find(TextField).at(1);
     inputName.simulate('change', {
       target: {
         value: 'Task1222',
@@ -58,16 +71,8 @@ describe('FormUpdate Components Unit Test', () => {
       },
     });
 
-    checkbox.simulate('click', {
-      target: {
-        value: false,
-        name: 'priority',
-      },
-    });
-
     wrapper.update();
     expect(wrapper.state().name).toEqual('Task1222');
     expect(wrapper.state().description).toEqual('create task with Angular');
-    expect(wrapper.state().priority).toEqual(false);
   });
 });

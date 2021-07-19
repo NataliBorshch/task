@@ -84,6 +84,7 @@ class FormUpdate extends Component {
               name="priority"
               color="primary"
               value={priority}
+              id="#checkbox"
             />
           }
           label="Priority ?"
@@ -109,4 +110,4 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(null, mapDispatchToProps)(FormUpdate);
 
-// export { FormUpdate };
+export { FormUpdate };

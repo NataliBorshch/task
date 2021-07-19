@@ -36,17 +36,17 @@ class TaskInfo extends Component {
           <li className="item_info">
             <StarIcon />
 
-            <p className="item_count"> READY :{READY}</p>
+            <p className="item_count">READY :{READY}</p>
           </li>
           <li className="item_info">
             <StarIcon />
 
-            <p className="item_count"> IN PROGRESS : {INPROGRESS}</p>
+            <p className="item_count">IN PROGRESS :{INPROGRESS}</p>
           </li>
           <li className="item_info">
             <StarIcon />
 
-            <p className="item_count"> COMPLETED :{COMPLETED}</p>
+            <p className="item_count">COMPLETED :{COMPLETED}</p>
           </li>
         </ul>
       </div>
@@ -59,3 +59,5 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, null)(TaskInfo);
+
+export { TaskInfo };
