@@ -16,7 +16,7 @@ describe('Filter Components Utin Test  ', () => {
   it('Filter should mount ', () => {
     wrapper = shallow(<Filter />);
     const div = wrapper.find('.filter_search');
-    const filter = wrapper.find('.form_input');
+    const filter = wrapper.find('.form_input_filter');
     expect(div.length).toBe(1);
     expect(filter.text()).toEqual('');
   });
@@ -27,7 +27,7 @@ describe('Filter Components Utin Test  ', () => {
     wrapper = shallow(
       <Filter getFilter={getFilterMock} filter={filterValue} />,
     );
-    const filter = wrapper.find('.form_input');
+    const filter = wrapper.find('.form_input_filter');
     filter.simulate('change');
     wrapper.update();
     expect(filter.props().value).toEqual('1');

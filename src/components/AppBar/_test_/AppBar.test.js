@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { mount, shallow } from 'enzyme';
-import AppBar from '../AppBar';
+import { shallow } from 'enzyme';
+import { AppBar } from '../AppBar';
 
 describe('AppBar Components Utin Test  ', () => {
   let wrapper;

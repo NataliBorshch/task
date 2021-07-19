@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { FormCreateTask } from '../FormCreateTask';
+import TextField from '@material-ui/core/TextField';
 
 describe('FormCreateTask Components Utin Test', () => {
   const initialState = {
@@ -22,12 +23,8 @@ describe('FormCreateTask Components Utin Test', () => {
   it('FormCreateTask to be mount', () => {
     wrapper = shallow(<FormCreateTask />);
     const form = wrapper.find('.form_create_task');
-    const labelNameTask = wrapper.find('.form_label').first();
-    const labelDescription = wrapper.find('.form_label').at(1);
     expect(wrapper.length).toEqual(1);
     expect(form.length).toEqual(1);
-    expect(labelNameTask.text()).toEqual('Name Task');
-    expect(labelDescription.text()).toEqual('Description');
   });
 
   it('FormCreateTask is initial state', () => {
@@ -47,15 +44,14 @@ describe('FormCreateTask Components Utin Test', () => {
     const btnAdd = wrapper.find('.form_create_task');
     btnAdd.simulate('submit', { preventDefault: () => {} });
     wrapper.update();
-
     expect(wrapper.length).toEqual(1);
     expect(addTaskMock).toHaveBeenCalled();
   });
 
   it('FormCreate Task  handleChange input', () => {
     wrapper = shallow(<FormCreateTask />);
-    const inputName = wrapper.find('input').first();
-    const inputDescription = wrapper.find('input').at(1);
+    const inputName = wrapper.find(TextField).first();
+    const inputDescription = wrapper.find(TextField).at(1);
     inputName.simulate('change', {
       target: {
         value: 'Task1',

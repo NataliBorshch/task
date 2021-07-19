@@ -13,12 +13,6 @@ import './Profile.scss';
 //done
 
 class Profile extends Component {
-  state = {
-    name: '',
-    avatar: '',
-    email: '',
-  };
-
   render() {
     const { user, taskCount } = this.props;
     return (
@@ -64,3 +58,5 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, null)(Profile);
+
+export { Profile };

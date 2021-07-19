@@ -1,22 +1,14 @@
 import * as React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { RegisterPage } from '../RegisterPage';
+import TextField from '@material-ui/core/TextField';
 
 const initialState = { email: '', password: '', name: '' };
-const props = {
-  users: {
-    user: {},
-    token: false,
-    error: null,
-    isAuthorized: false,
-  },
-  onSubmit: () => {},
-};
 
 describe('RegisterPage Components Utin Test  ', () => {
   let wrapper;
   it('RegisterPage initial state  ', () => {
-    wrapper = shallow(<RegisterPage {...props} />);
+    wrapper = shallow(<RegisterPage />);
     const form = wrapper.find('.register_page');
     wrapper.setState(initialState);
     expect(form).toHaveLength(1);
@@ -35,9 +27,9 @@ describe('RegisterPage Components Utin Test  ', () => {
 
   it('LoginPage handleChange input', () => {
     wrapper = shallow(<RegisterPage />);
-    const inputName = wrapper.find('input').first();
-    const inputEmail = wrapper.find('input').at(1);
-    const inputPassword = wrapper.find('input').at(2);
+    const inputName = wrapper.find(TextField).first();
+    const inputEmail = wrapper.find(TextField).at(1);
+    const inputPassword = wrapper.find(TextField).at(2);
     inputName.simulate('change', {
       target: {
         value: 'Nina',

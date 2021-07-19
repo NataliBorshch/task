@@ -48,20 +48,27 @@ class Task extends Component {
         </th>
         <th className={item.reject ? 'task_item_reject' : 'task_item'}>
           <FormControlLabel
-            control={<Checkbox checked={item.priority} color="primary" />}
+            control={
+              <Checkbox checked={item.priority} id="priority" color="primary" />
+            }
           />
         </th>
 
         <th className={item.reject ? 'task_item_reject' : 'task_item'}>
           <IconButton
             aria-label="reject"
+            id="reject"
             onClick={() => onRejectTask(item.id, { reject: true })}
           >
             <RemoveCircleIcon />
           </IconButton>
 
           <ModalEdit item={item} />
-          <IconButton aria-label="close" onClick={() => onDelete(item.id)}>
+          <IconButton
+            aria-label="close"
+            onClick={() => onDelete(item.id)}
+            id="delete_task"
+          >
             <DeleteIcon />
           </IconButton>
         </th>
@@ -77,4 +84,4 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(null, mapDispatchToProps)(Task);
 
-// export { Task };
+export { Task };
