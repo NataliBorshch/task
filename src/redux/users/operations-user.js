@@ -60,23 +60,9 @@ const getCurrentUser = () => (dispatch, getState) => {
     .catch(error => dispatch(userActions.getCurrentUserError(error.message)));
 };
 
-const uploadAvatar = file => async dispatch => {
-  dispatch(userActions.uploadAvatarRequest());
-  try {
-    const fd = new FormData();
-    fd.append('name', file.name);
-    fd.append('avatar', file);
-    const res = await axios.patch('/users/avatars', fd);
-    dispatch(userActions.uploadAvatarSuccess(res.data));
-  } catch (err) {
-    dispatch(userActions.uploadAvatarError(err.message));
-  }
-};
-
 export default {
   register,
   logIn,
   logOut,
   getCurrentUser,
-  uploadAvatar,
 };
