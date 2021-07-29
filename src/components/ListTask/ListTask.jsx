@@ -123,9 +123,9 @@ class ListTask extends Component {
             </thead>
             <tbody>
               {tasks.length > 0 &&
-                tasks.map((item, i) => (
+                tasks.map(item => (
                   <tr key={item.id}>
-                    <Task item={item} index={i + 1} />
+                    <Task item={item} />
                   </tr>
                 ))}
             </tbody>

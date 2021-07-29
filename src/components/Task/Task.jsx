@@ -19,11 +19,11 @@ import './Task.scss';
 
 class Task extends Component {
   render() {
-    const { item, onDelete, index, onRejectTask } = this.props;
+    const { item, onDelete, onRejectTask } = this.props;
     return (
       <>
         <th id="id" className={item.reject ? 'task_item_reject' : 'task_item'}>
-          {index}
+          {item.id}
         </th>
         <th
           id="name"
